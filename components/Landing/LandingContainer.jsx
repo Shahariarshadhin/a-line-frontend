@@ -1,87 +1,107 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { useRouter } from "next/navigation";
 
 export default function SectionCarousel() {
-  const router = useRouter();
-
   const sections = [
     {
       title: "WHO WE ARE",
-      image:
-        "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80",
+      image: "/assets/Landing/who we are.png",
       link: "/who-we-are",
     },
     {
       title: "PORTFOLIO",
-      image:
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80",
+      image: "/assets/Landing/A-line portfolio.png",
       link: "/portfolio",
     },
     {
       title: "SERVICES",
-      image:
-        "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80",
+      image: "/assets/Landing/Services.png",
       link: "/services",
     },
     {
       title: "TEAM",
-      image:
-        "https://images.unsplash.com/photo-1522071901873-411886a10004?auto=format&fit=crop&w=1600&q=80",
+      image: "/assets/Landing/Team.png",
       link: "/team",
     },
     {
       title: "ASK FOR A QUOTE",
-      image:
-        "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1600&q=80",
+      image: "/assets/Landing/askforq.png",
       link: "/quote",
     },
   ];
 
-  const [current, setCurrent] = useState(2); // Start at index 2 (SERVICES)
+  const [current, setCurrent] = useState(2);
   const [offset, setOffset] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [startPos, setStartPos] = useState(0);
   const [dragDistance, setDragDistance] = useState(0);
+  const [baseSpacing, setBaseSpacing] = useState(380);
+  
   const velocityRef = useRef(0);
   const lastPosRef = useRef(0);
   const lastTimeRef = useRef(0);
-  const animationRef = useRef(null);
+  const autoPlayTimerRef = useRef(null);
+  const clickStartTimeRef = useRef(0);
 
-  const goToSlide = (index) => {
-    if (isAnimating && !isDragging) return;
-    
+  useEffect(() => {
+    const updateSpacing = () => {
+      if (window.innerWidth > 1024) {
+        setBaseSpacing(450);
+      } else if (window.innerWidth > 768) {
+        setBaseSpacing(380);
+      } else {
+        setBaseSpacing(320);
+      }
+    };
+
+    updateSpacing();
+    window.addEventListener('resize', updateSpacing);
+    return () => window.removeEventListener('resize', updateSpacing);
+  }, []);
+
+  const goToSlide = (index, skipAnimation = false) => {
+    if (isAnimating && !skipAnimation) return;
+
     setIsAnimating(true);
     setCurrent(index);
     setOffset(0);
-    
-    setTimeout(() => setIsAnimating(false), 400);
+
+    setTimeout(() => setIsAnimating(false), 500);
   };
 
   const nextSlide = () => {
     goToSlide((current + 1) % sections.length);
   };
 
-  useEffect(() => {
-    const timer = setInterval(() => {
+  const resetAutoPlay = () => {
+    if (autoPlayTimerRef.current) {
+      clearInterval(autoPlayTimerRef.current);
+    }
+    
+    autoPlayTimerRef.current = setInterval(() => {
       if (!isDragging && !isAnimating) {
         nextSlide();
       }
     }, 5000);
+  };
 
-    return () => clearInterval(timer);
+  useEffect(() => {
+    resetAutoPlay();
+    return () => {
+      if (autoPlayTimerRef.current) {
+        clearInterval(autoPlayTimerRef.current);
+      }
+    };
   }, [current, isDragging, isAnimating]);
 
   const handleStart = (clientX) => {
-    if (animationRef.current) {
-      cancelAnimationFrame(animationRef.current);
-    }
     setIsDragging(true);
     setIsAnimating(false);
     setStartPos(clientX);
     setDragDistance(0);
+    clickStartTimeRef.current = Date.now();
     lastPosRef.current = clientX;
     lastTimeRef.current = Date.now();
     velocityRef.current = 0;
@@ -110,8 +130,22 @@ export default function SectionCarousel() {
 
     setIsDragging(false);
 
-    const threshold = 80;
-    const velocityThreshold = 0.5;
+    const threshold = 50;
+    const velocityThreshold = 0.3;
+    const clickTimeThreshold = 200;
+    const clickDistanceThreshold = 10;
+
+    const clickDuration = Date.now() - clickStartTimeRef.current;
+    const wasClick = 
+      clickDuration < clickTimeThreshold && 
+      Math.abs(dragDistance) < clickDistanceThreshold;
+
+    if (wasClick) {
+      setOffset(0);
+      setDragDistance(0);
+      velocityRef.current = 0;
+      return;
+    }
 
     let shouldChange = false;
     let direction = 0;
@@ -125,13 +159,14 @@ export default function SectionCarousel() {
     }
 
     if (shouldChange) {
-      const newIndex = (current + direction + sections.length) % sections.length;
+      const newIndex =
+        (current + direction + sections.length) % sections.length;
       setIsAnimating(true);
       setCurrent(newIndex);
       setOffset(0);
-      setTimeout(() => setIsAnimating(false), 400);
+      setTimeout(() => setIsAnimating(false), 500);
+      resetAutoPlay();
     } else {
-      // Snap back
       setIsAnimating(true);
       setOffset(0);
       setTimeout(() => setIsAnimating(false), 300);
@@ -143,26 +178,31 @@ export default function SectionCarousel() {
   };
 
   const handleTextClick = (index, e) => {
-    if (Math.abs(dragDistance) > 5) {
-      e.preventDefault();
+    e.preventDefault();
+    e.stopPropagation();
+
+    const clickTimeThreshold = 200;
+    const clickDistanceThreshold = 10;
+    
+    // Check if this was a drag or a click
+    if (Math.abs(dragDistance) > clickDistanceThreshold) {
       return;
     }
 
-    const position = (index - current + sections.length) % sections.length;
-    const isCurrent = position === 0;
-
-    if (isCurrent) {
-      router.push(sections[index].link);
+    if (index === current) {
+      const link = sections[index].link;
+      setTimeout(() => {
+        window.open(link, '_self');
+      }, 0);
     } else {
       goToSlide(index);
+      resetAutoPlay();
     }
   };
 
-  // Create infinite loop array
   const getVisibleSections = () => {
     const items = [];
-    const visibleCount = 5;
-    
+
     for (let i = -2; i <= 2; i++) {
       const index = (current + i + sections.length) % sections.length;
       items.push({
@@ -171,7 +211,7 @@ export default function SectionCarousel() {
         position: i,
       });
     }
-    
+
     return items;
   };
 
@@ -192,16 +232,27 @@ export default function SectionCarousel() {
       onTouchEnd={handleEnd}
       style={{ cursor: isDragging ? "grabbing" : "grab" }}
     >
+      <style jsx>{`
+        @keyframes blink {
+          0%, 49% {
+            opacity: 1;
+          }
+          50%, 100% {
+            opacity: 0;
+          }
+        }
+        .blink-underscore {
+          animation: blink 1s infinite;
+        }
+      `}</style>
+
       {/* Background Images */}
       {sections.map((section, index) => (
         <div
           key={index}
-          className={`absolute inset-0 ${
+          className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
             current === index ? "opacity-100" : "opacity-0"
           }`}
-          style={{
-            transition: "opacity 0.5s ease-in-out",
-          }}
         >
           <img
             src={section.image}
@@ -213,48 +264,75 @@ export default function SectionCarousel() {
         </div>
       ))}
 
-      {/* Content Container - Continuous Loop */}
+      {/* Content Container */}
       <div className="relative z-10 h-full flex items-center justify-center px-8 overflow-hidden">
-        <div
-          className="flex items-center justify-center gap-12 lg:gap-20"
-          style={{
-            transform: `translateX(${offset}px)`,
-            transition: !isDragging && isAnimating ? "transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)" : "none",
-          }}
-        >
-          {visibleSections.map((section, idx) => {
-            const isCurrent = section.position === 0;
-            const isAdjacent = Math.abs(section.position) === 1;
+        {visibleSections.map((section, idx) => {
+          const isCurrent = section.position === 0;
+          const isAdjacent = Math.abs(section.position) === 1;
+          
+          // Calculate position based on index relative to center
+          const position = section.position * baseSpacing;
 
-            return (
-              <div
-                key={`${section.actualIndex}-${idx}`}
-                onClick={(e) => handleTextClick(section.actualIndex, e)}
-                className={`${
+          return (
+            <div
+              key={`${section.actualIndex}-${idx}`}
+              onClick={(e) => handleTextClick(section.actualIndex, e)}
+              className={`absolute transition-all duration-500 ease-out ${
+                isCurrent
+                  ? "opacity-100 scale-100 cursor-pointer z-30"
+                  : isAdjacent
+                  ? "opacity-40 scale-75 cursor-pointer hover:opacity-60 hover:scale-80 z-20"
+                  : "opacity-15 scale-50 cursor-pointer hover:opacity-30 hover:scale-55 z-10"
+              }`}
+              style={{
+                left: isCurrent ? '50%' : `calc(50% + ${position + offset}px)`,
+                top: '50%',
+                transform: isCurrent ? 'translate(-50%, -50%)' : 'translate(-50%, -50%)',
+                transition:
+                  !isDragging && isAnimating
+                    ? "left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.5s ease-out, transform 0.5s ease-out"
+                    : isDragging
+                    ? "opacity 0.5s ease-out, transform 0.5s ease-out"
+                    : "opacity 0.5s ease-out, transform 0.5s ease-out",
+              }}
+            >
+              <h1
+                className={`font-black whitespace-nowrap transition-all duration-300 ${
                   isCurrent
-                    ? "opacity-100 scale-100 cursor-pointer"
-                    : isAdjacent
-                    ? "opacity-30 scale-75 cursor-pointer hover:opacity-50 hidden lg:block"
-                    : "opacity-0 scale-50 hidden lg:block pointer-events-none"
+                    ? "text-4xl md:text-5xl lg:text-5xl hover:scale-105 bg-white py-3 px-2 text-black shadow-2xl"
+                    : "text-4xl md:text-5xl lg:text-5xl text-white"
                 }`}
-                style={{
-                  transition: isDragging || isAnimating ? "none" : "opacity 0.4s ease-out, transform 0.4s ease-out",
-                }}
+                draggable="false"
               >
-                <h1
-                  className={`font-black whitespace-nowrap ${
-                    isCurrent
-                      ? "text-5xl md:text-6xl lg:text-7xl hover:scale-105 bg-white py-3 px-2 text-black"
-                      : "text-5xl md:text-6xl lg:text-7xl text-white"
-                  }`}
-                  draggable="false"
-                >
-                  {section.title}
-                </h1>
-              </div>
-            );
-          })}
-        </div>
+                {section.title}
+                {isCurrent ? (
+                  <span className="blink-underscore">_</span>
+                ) : (
+                  "_"
+                )}
+              </h1>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Navigation Dots */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-3 z-20">
+        {sections.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => {
+              goToSlide(index);
+              resetAutoPlay();
+            }}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              current === index
+                ? "bg-white scale-125"
+                : "bg-white/40 hover:bg-white/60"
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
       </div>
     </div>
   );
