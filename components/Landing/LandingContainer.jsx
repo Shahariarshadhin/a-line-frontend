@@ -303,8 +303,8 @@ export default function SectionCarousel() {
               <h1
                 className={`font-black whitespace-nowrap transition-all duration-300 ${
                   isCurrent
-                    ? "text-4xl md:text-5xl lg:text-5xl hover:scale-105 bg-white py-3 px-2 text-black shadow-2xl"
-                    : "text-4xl md:text-5xl lg:text-5xl text-white"
+                    ? "text-4xl md:text-5xl lg:text-7xl hover:scale-105 bg-white py-3 px-2 text-black shadow-2xl"
+                    : "text-4xl md:text-5xl lg:text-7xl text-white"
                 }`}
                 draggable="false"
               >
