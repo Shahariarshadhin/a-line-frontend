@@ -83,11 +83,11 @@ export default function Navbar() {
 
       {/* Full Screen Menu Overlay */}
       <div
-        className={`fixed inset-0 bg-black z-40 transition-transform duration-300 ease-in-out ${
+        className={`fixed inset-0 bg-black z-40 transition-transform duration-300 ease-in-out font-barlow-condensed ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex flex-col h-full p-8 pt-24">
+        <div className="flex flex-col h-full p-8 pt-32 pl-[10%]">
           {/* Navigation Links */}
           <nav className="flex-1">
             <ul className="space-y-6">
