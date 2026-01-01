@@ -190,10 +190,14 @@ export default function SectionCarousel() {
     }
 
     if (index === current) {
-      const link = sections[index].link;
-      setTimeout(() => {
-        window.open(link, '_self');
-      }, 0);
+      // Only allow navigation for PORTFOLIO section (index 1)
+      if (index === 1) {
+        const link = sections[index].link;
+        setTimeout(() => {
+          window.open(link, '_self');
+        }, 0);
+      }
+      // All other sections do nothing when clicked
     } else {
       goToSlide(index);
       resetAutoPlay();
