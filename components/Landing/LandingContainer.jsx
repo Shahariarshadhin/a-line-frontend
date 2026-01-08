@@ -5,9 +5,9 @@ import { useState, useEffect, useRef } from "react";
 export default function SectionCarousel() {
   const sections = [
     {
-      title: "WHO WE ARE",
+      title: "Home",
       image: "/assets/Landing/who we are.png",
-      link: "/who-we-are",
+      link: "/home",
     },
     {
       title: "PORTFOLIO",
@@ -20,14 +20,14 @@ export default function SectionCarousel() {
       link: "/services",
     },
     {
-      title: "TEAM",
+      title: "Who we are",
       image: "/assets/Landing/Team.png",
-      link: "/team",
+      link: "/who-we-are",
     },
     {
-      title: "ASK FOR A QUOTE",
+      title: "Blogs",
       image: "/assets/Landing/askforq.png",
-      link: "/quote",
+      link: "/blogs",
     },
   ];
 
@@ -303,7 +303,7 @@ export default function SectionCarousel() {
               <h1
                 className={`font-black whitespace-nowrap transition-all duration-300 ${
                   isCurrent
-                    ? "text-4xl md:text-5xl lg:text-7xl hover:scale-105 bg-white py-3 px-2 text-black shadow-2xl"
+                    ? "text-4xl md:text-5xl lg:text-8xl hover:scale-105 bg-white py-3 px-2 text-black shadow-2xl"
                     : "text-4xl md:text-5xl lg:text-7xl text-white"
                 }`}
                 draggable="false"

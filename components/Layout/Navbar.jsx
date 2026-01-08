@@ -13,11 +13,11 @@ export default function Navbar() {
 
   const navItems = [
     { name: "HOME", href: "/" },
-    { name: "PAGES", href: "#" },
     { name: "PORTFOLIO", href: "/portfolio" },
-    { name: "BLOG", href: "#" },
-    { name: "SHOP", href: "#" },
-    { name: "LANDING", href: "#" },
+    { name: "Services", href: "#" },
+    { name: "Who we are", href: "#" },
+    { name: "Blogs", href: "#" },
+    // { name: "LANDING", href: "#" },
   ];
 
   return (
