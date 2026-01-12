@@ -191,7 +191,7 @@ export default function SectionCarousel() {
 
     if (index === current) {
       // Only allow navigation for PORTFOLIO section (index 1)
-      if (index === 1) {
+      if (index === 0 || index === 1) {
         const link = sections[index].link;
         setTimeout(() => {
           window.open(link, '_self');

@@ -12,7 +12,7 @@ export default function Navbar() {
   };
 
   const navItems = [
-    { name: "HOME", href: "/" },
+    { name: "HOME", href: "/home" },
     { name: "PORTFOLIO", href: "/portfolio" },
     { name: "Services", href: "#" },
     { name: "Who we are", href: "#" },
