@@ -1,3 +1,6 @@
+import AwardsSection from "./AwardsSection";
+import Contact from "./Contact";
+import FeaturedClients from "./FeaturedClients";
 import FeaturesSection from "./FeaturesSection";
 import HeroBanner from "./HeroBanner";
 import NewsSection from "./NewsSection";
@@ -12,6 +15,9 @@ const HomeContainer = () => {
       <ProjectShowCase />
       <NewsSection />
       <StatsSection />
+      <FeaturedClients />
+      <AwardsSection />
+      <Contact />
     </div>
   );
 };
