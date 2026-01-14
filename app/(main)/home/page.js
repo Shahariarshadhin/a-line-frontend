@@ -1,4 +1,5 @@
-import HomeContainer from '@/components/Pages/Home/HomeContainer'
+import HomeContainer from "@/components/Pages/Home/HomeContainer"
+
 
 const page = () => {
   return (

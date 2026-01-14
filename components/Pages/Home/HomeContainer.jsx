@@ -17,7 +17,7 @@ const HomeContainer = () => {
       <StatsSection />
       <FeaturedClients />
       <AwardsSection />
-      <Contact />
+      {/* <Contact /> */}
     </div>
   );
 };
