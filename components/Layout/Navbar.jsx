@@ -30,7 +30,7 @@ export default function Navbar() {
             <Link href="/" className="flex items-center z-50">
               <div className="w-full h-full text-white font-bold text-3xl">
                 <Image
-                  src="/assets/logo/logo-white.PNG"
+                  src="/assets/logo/logo-black.PNG"
                   alt="Logo"
                   width={160}
                   height={160}
@@ -42,13 +42,13 @@ export default function Navbar() {
             {/* Toggle Button - Hamburger/Close */}
             <button
               onClick={toggleMenu}
-              className="p-2 rounded-md hover:bg-white/10 z-50"
+              className="p-2 rounded-md bg-black"
               aria-label="Toggle menu"
             >
               {isOpen ? (
                 // Close Icon (X)
                 <svg
-                  className="w-6 h-6 text-white"
+                  className="w-6 h-6 text-black"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
