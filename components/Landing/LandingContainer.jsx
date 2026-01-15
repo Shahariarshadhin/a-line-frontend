@@ -17,7 +17,7 @@ export default function SectionCarousel() {
     {
       title: "SERVICES",
       image: "/assets/Landing/Services.png",
-      link: "/services",
+      link: "/service",
     },
     {
       title: "Who we are",
@@ -191,7 +191,7 @@ export default function SectionCarousel() {
 
     if (index === current) {
       // Only allow navigation for PORTFOLIO section (index 1)
-      if (index === 0 || index === 1) {
+      if (index === 0 || index === 1 || index === 2) {
         const link = sections[index].link;
         setTimeout(() => {
           window.open(link, '_self');
