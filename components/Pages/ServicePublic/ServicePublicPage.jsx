@@ -332,7 +332,7 @@ export default function ServicePublic() {
               </h4>
               <h4 className="font-bold text-2xl py-4">Marketing That Hits</h4>
               <p>
-                At Slingshot Media, we don’t shoot in the dark — we use data,
+                At A-Line, we don’t shoot in the dark — we use data,
                 strategy, and creativity to deliver campaigns that convert.
                 Every click counts.
               </p>
