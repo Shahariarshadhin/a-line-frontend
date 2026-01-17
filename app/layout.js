@@ -1,11 +1,12 @@
 import { Barlow_Condensed } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Layout/Navbar";
+import FloatingButtons from "@/components/Shared/FloatingButtons";
 
 const barlowCondensed = Barlow_Condensed({
   variable: "--font-barlow-condensed",
   subsets: ["latin"],
-  weight: ["400", "700"], // Add the weights you need
+  weight: ["400", "700"],
 });
 
 export const metadata = {
@@ -16,11 +17,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${barlowCondensed.variable} antialiased`}
-      >
+      <body className={`${barlowCondensed.variable} antialiased`}>
         <Navbar />
-        {children}
+        <FloatingButtons>{children}</FloatingButtons>
       </body>
     </html>
   );
