@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import {
   Menu,
@@ -19,6 +19,7 @@ import DurexFIFABlog from "./DurexFIFABlog";
 import BritishCouncilIELTSBlog from "./BritishCouncilIELTSBlog";
 import BritishCouncilSearchBlog from "./BritishCouncilSearchBlog";
 import DettolMissionBlog from "./DettolMissionBlog";
+import Image from "next/image";
 
 const BlogApp = () => {
   const [view, setView] = useState("listing");
@@ -61,7 +62,7 @@ const BlogApp = () => {
     const otherBlogs = blogs.filter((b) => b.id !== selectedBlog.id);
 
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50 py-20">
         {/* <header className="bg-white border-b py-4 sticky top-0 z-50">
           <div className="container mx-auto px-4 flex items-center justify-between">
             <div className="text-2xl font-bold">BLOG</div>
@@ -74,10 +75,18 @@ const BlogApp = () => {
           </div>
         </header> */}
 
-        <div className="h-64 bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center">
-          <h1 className="text-4xl font-bold text-white text-center px-4">
-            {selectedBlog.title}
-          </h1>
+        <div className="relative h-96 w-full overflow-hidden">
+          <img
+            src="/assets/Blog/blogBanner.jpg"
+            alt="Background"
+            className="absolute top-0 left-0 w-full h-full object-cover z-0"
+          />
+          <div className="absolute top-0 left-0 w-full h-full  bg-opacity-50 z-10"></div>
+          <div className="relative z-20 h-full flex items-center justify-center">
+            <h1 className="text-4xl font-bold text-white text-center px-4 max-w-4xl mx-auto">
+              {selectedBlog.title}
+            </h1>
+          </div>
         </div>
 
         <div className="container mx-auto px-4 py-12">
@@ -161,7 +170,8 @@ const BlogApp = () => {
           <div className="lg:col-span-2">
             {searchQuery && (
               <div className="mb-6 text-gray-600">
-                Found {filteredBlogs.length} results for &quot;{searchQuery}&quot;
+                Found {filteredBlogs.length} results for &quot;{searchQuery}
+                &quot;
               </div>
             )}
 

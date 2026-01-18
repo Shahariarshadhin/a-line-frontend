@@ -3,7 +3,7 @@ const BritishCouncilIELTSBlog = () => (
   <div className="space-y-8">
     <div
       className="w-full h-96 bg-cover bg-center mb-8"
-      style={{ backgroundImage: "url('/assets/Home/Picture 11.png')" }}
+      style={{ backgroundImage: "url('/assets/Blog/IELTS-on-computer.jpg')" }}
     />
 
     <div className="prose max-w-none space-y-6 text-gray-700 leading-relaxed">

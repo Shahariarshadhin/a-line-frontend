@@ -3,7 +3,7 @@ const DettolMissionBlog = () => (
   <div className="space-y-8">
     <div
       className="w-full h-96 bg-cover bg-center mb-8"
-      style={{ backgroundImage: "url('/assets/Home/Blog/BD-5-2.png')" }}
+      style={{ backgroundImage: "url('/assets/Blog/BD-5-2.png')" }}
     />
 
     <div className="prose max-w-none space-y-6 text-gray-700 leading-relaxed">
