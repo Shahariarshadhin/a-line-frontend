@@ -52,7 +52,7 @@ export default function VisionSection() {
         <div className="relative group">
           <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-orange-500 rounded-lg transform rotate-3 transition-transform duration-500 group-hover:rotate-6 opacity-20" />
           <img
-            src="/api/placeholder/600/700"
+            src="/assets/About/teammeeting.jpg"
             alt="Team Meeting"
             className={`relative w-full h-auto rounded-lg shadow-xl transition-all duration-1000 group-hover:scale-105 ${
               isVisible ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'

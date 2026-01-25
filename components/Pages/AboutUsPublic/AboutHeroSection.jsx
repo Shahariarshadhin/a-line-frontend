@@ -29,7 +29,7 @@ export default function HeroSection() {
         style={{ transform: `translateY(${scrollY * 0.5}px)` }}
       >
         <img
-          src="/api/placeholder/1920/1080"
+         src="/assets/About/abouthero.jpeg"
           alt="About Hero"
           className="w-full h-full object-cover filter grayscale transition-all duration-700 hover:grayscale-0 hover:scale-105"
         />
@@ -51,7 +51,7 @@ export default function HeroSection() {
               isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`}
           >
-            About
+            Who We Are
           </h1>
           <div className="flex flex-col md:flex-row gap-8 items-start">
             <p 
@@ -61,13 +61,13 @@ export default function HeroSection() {
             >
               Hello, I&apos;m <span className="font-semibold">Ahmad Mohsen</span>, a self-taught developer based in Malaysia. I love to travel & create amazing experiences.
             </p>
-            <img
+            {/* <img
               src="/api/placeholder/300/200"
               alt="Technology"
               className={`w-64 h-auto rounded-lg shadow-2xl transition-all duration-1000 delay-700 hover:scale-110 hover:shadow-red-500/50 ${
                 isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
               }`}
-            />
+            /> */}
           </div>
         </div>
       </div>

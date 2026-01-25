@@ -37,7 +37,7 @@ export default function ApproachSection() {
         >
           <div className={`absolute inset-0 bg-gradient-to-br from-red-500/30 to-orange-500/30 z-10 transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'}`} />
           <img
-            src="/api/placeholder/600/700"
+            src="/assets/About/Approach.jpg"
             alt="Creative Workspace"
             className={`w-full h-auto rounded-lg shadow-xl transition-all duration-1000 group-hover:scale-110 ${
               isVisible ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'

@@ -79,7 +79,7 @@ export default function ProcessSection() {
             className={`absolute inset-0 bg-gradient-to-r ${steps[activeStep].color} rounded-lg transform -rotate-3 transition-all duration-500 group-hover:-rotate-6 opacity-20`}
           />
           <img
-            src="/api/placeholder/600/700"
+            src="/assets/About/process.png"
             alt="Interior Design"
             className={`relative w-full h-auto rounded-lg shadow-xl transition-all duration-1000 group-hover:scale-105 ${
               isVisible ? 'translate-x-0 opacity-100 rotate-0' : 'translate-x-10 opacity-0 rotate-3'

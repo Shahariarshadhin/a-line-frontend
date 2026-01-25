@@ -22,7 +22,7 @@ export default function SectionCarousel() {
     {
       title: "Who we are",
       image: "/assets/Landing/Team.png",
-      link: "/who-we-are",
+      link: "/about",
     },
     {
       title: "Blogs",
@@ -191,7 +191,7 @@ export default function SectionCarousel() {
 
     if (index === current) {
       // Only allow navigation for PORTFOLIO section (index 1)
-      if (index === 0 || index === 1 || index === 2) {
+      if (index === 0 || index === 1 || index === 2 || index === 3 || index === 4) {
         const link = sections[index].link;
         setTimeout(() => {
           window.open(link, '_self');
