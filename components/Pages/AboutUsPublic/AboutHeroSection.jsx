@@ -59,7 +59,7 @@ export default function HeroSection() {
                 isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
               }`}
             >
-              Hello, I&apos;m <span className="font-semibold">Ahmad Mohsen</span>, a self-taught developer based in Malaysia. I love to travel & create amazing experiences.
+              Aligning brands so they stand out and stand for something.
             </p>
             {/* <img
               src="/api/placeholder/300/200"

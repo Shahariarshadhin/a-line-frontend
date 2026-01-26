@@ -23,31 +23,31 @@ const Footer = () => {
             </p>
             <div className="flex space-x-4 text-xl justify-center">
               <a
-                href="https://www.facebook.com/SlingshotmgBD"
+                href="https://www.facebook.com/ALineLimited/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-text-secondary hover:text-primary transition-colors text-white"
               >
                 <FaFacebookF />
               </a>
-              <a
+              {/* <a
                 href="https://www.tiktok.com/@slingshotmg"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-text-secondary hover:text-primary transition-colors text-white"
               >
                 <FaTiktok />
-              </a>
-              {/* <a
-                href="https://instagram.com/slingshotmedia"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-text-secondary hover:text-primary transition-colors"
-              >
-                <FaInstagram />
               </a> */}
               <a
-                href="https://www.linkedin.com/company/slingshotmg/about/"
+                href="https://www.instagram.com/a_linebrands"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-text-secondary hover:text-primary transition-colors text-white"
+              >
+                <FaInstagram />
+              </a>
+              <a
+                href="https://www.linkedin.com/company/a-linebrands"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-text-secondary hover:text-primary transition-colors text-white"

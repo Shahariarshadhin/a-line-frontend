@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { CiLocationOn } from "react-icons/ci";
+import { FaInstagram } from "react-icons/fa";
 import { FaTiktok } from "react-icons/fa6";
 import {
   IoCallOutline,
@@ -104,18 +105,18 @@ export default function ContactForm() {
   const socialLinks = [
     {
       icon: <IoLogoFacebook className="text-2xl" />,
-      url: "https://www.facebook.com/",
+      url: "https://www.facebook.com/ALineLimited/",
       label: "Facebook",
     },
     {
       icon: <IoLogoLinkedin className="text-2xl" />,
-      url: "https://www.linkedin.com/",
+      url: "https://www.linkedin.com/company/a-linebrands",
       label: "LinkedIn",
     },
     {
-      icon: <FaTiktok className="text-2xl" />,
-      url: "https://www.tiktok.com/",
-      label: "Tiktok",
+      icon: <FaInstagram className="text-2xl" />,
+      url: "https://www.instagram.com/a_linebrands",
+      label: "Instagram",
     },
   ];
 
