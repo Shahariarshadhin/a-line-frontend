@@ -116,7 +116,7 @@ const BlogApp = () => {
               <div className="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
                 <div className="flex items-center justify-between mb-6 pb-6 border-b">
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold">
+                    {/* <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold">
                       {selectedBlog.author.charAt(0)}
                     </div>
                     <div>
@@ -124,7 +124,7 @@ const BlogApp = () => {
                       <div className="text-sm text-gray-500">
                         {selectedBlog.date}
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                   <div className="flex gap-3">
                     <button
@@ -187,11 +187,11 @@ const BlogApp = () => {
                       </span>
                     ))}
                   </div>
-                  <div className="flex items-center justify-between text-sm text-gray-500">
+                  {/* <div className="flex items-center justify-between text-sm text-gray-500">
                     <span>By {selectedBlog.author}</span>
                     <span>{selectedBlog.date}</span>
                     <span>{selectedBlog.readTime}</span>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
@@ -348,11 +348,11 @@ const BlogApp = () => {
                     className="rotate-180 transition-transform group-hover/btn:translate-x-1"
                   />
                 </button>
-                <div className="mt-4 pt-4 border-t flex items-center justify-between text-xs text-gray-500">
+                {/* <div className="mt-4 pt-4 border-t flex items-center justify-between text-xs text-gray-500">
                   <span>By {blog.author}</span>
                   <span>{blog.date}</span>
                   <span>{blog.comments} Comment</span>
-                </div>
+                </div> */}
               </article>
             ))}
           </div>

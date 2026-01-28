@@ -45,7 +45,7 @@ export default function Navbar() {
   return (
     <>
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-50">
+      <nav className="absolute top-0 left-0 right-0 z-50 bg-transparent">
         <div className="px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             {/* Logo */}

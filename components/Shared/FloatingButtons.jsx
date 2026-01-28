@@ -70,7 +70,7 @@ export default function FloatingButtons({ children }) {
             >
               <div className="flex justify-end mb-4">
                 <button
-                  className="text-white text-3xl hover:text-red-500 transition-colors bg-white/10 rounded-full w-12 h-12 flex items-center justify-center"
+                  className="text-white text-3xl hover:text-gray-300 transition-colors bg-white/10 rounded-full w-12 h-12 flex items-center justify-center"
                   onClick={() => setIsModalOpen(false)}
                 >
                   ✕
