@@ -1,25 +1,23 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-import { Award, Sparkles, Trophy, Medal, Star } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Award, Trophy, Medal, Calendar, ArrowRight } from 'lucide-react';
 
 export default function AwardsSection() {
-  const [activeAward, setActiveAward] = useState(null);
-  const [hoveredAchievement, setHoveredAchievement] = useState(null);
-  const [confetti, setConfetti] = useState([]);
-  const [isVisible, setIsVisible] = useState(false);
+  const [hoveredId, setHoveredId] = useState(null);
+  const [expandedId, setExpandedId] = useState(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const sectionRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   const awards = [
     {
       id: 1,
-      number: "01.",
       category: "Commward",
       image: "/assets/Awards/Commrade.jpeg",
       color: "from-yellow-400 to-orange-500",
       accentColor: "#fbbf24",
       icon: Trophy,
+      year: "Multiple Years",
       achievements: [
         "Best use of digital media - IELTS Advocacy campaign",
         "Shurikkhito Ma, Shurikkhito Agami (Campaign for underprivileged women)",
@@ -29,12 +27,12 @@ export default function AwardsSection() {
     },
     {
       id: 2,
-      number: "02.",
       category: "DMA (Digital Marketing Award)",
       image: "/assets/Awards/DMA.jpeg",
       color: "from-blue-400 to-purple-500",
       accentColor: "#60a5fa",
       icon: Medal,
+      year: "Multiple Years",
       achievements: [
         "Best use of Facebook - ACI Fun Junction - Latim, Danguli - share photo contest",
         "Best use of Digital Media Alesha Mart launch"
@@ -43,327 +41,316 @@ export default function AwardsSection() {
   ];
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
+    const timer = setTimeout(() => setIsVisible(true), 100);
+    return () => clearTimeout(timer);
   }, []);
 
-  const handleAwardClick = (awardId, e) => {
-    const newActive = activeAward === awardId ? null : awardId;
-    setActiveAward(newActive);
-
-    if (newActive !== null) {
-      // Create confetti effect
-      const rect = e.currentTarget.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      
-      const newConfetti = Array.from({ length: 30 }, (_, i) => ({
-        id: Date.now() + i,
-        x: centerX,
-        y: centerY,
-        color: awards.find(a => a.id === awardId).accentColor,
-        angle: (Math.PI * 2 * i) / 30,
-        velocity: 2 + Math.random() * 3
-      }));
-      
-      setConfetti(newConfetti);
-      setTimeout(() => setConfetti([]), 2000);
-    }
-  };
-
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e, id) => {
     const rect = e.currentTarget.getBoundingClientRect();
     setMousePos({
       x: e.clientX - rect.left,
-      y: e.clientY - rect.top
+      y: e.clientY - rect.top,
     });
   };
 
   return (
-    <section className="w-full bg-gray-200 py-16 md:py-20 relative overflow-hidden" ref={sectionRef}>
+    <section className="w-full py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+      {/* Animated background pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle at 2px 2px, #000 1px, transparent 0)`,
+          backgroundSize: '40px 40px'
+        }} />
+      </div>
 
-      {/* Confetti particles */}
-      {confetti.map((particle) => (
+      {/* Floating background shapes */}
+      {awards.map((award, index) => (
         <div
-          key={particle.id}
-          className="absolute pointer-events-none w-2 h-2 rounded-full"
+          key={`bg-${award.id}`}
+          className={`absolute w-64 h-64 rounded-full blur-3xl transition-all duration-1000 ${
+            hoveredId === award.id ? 'opacity-20 scale-150' : 'opacity-0'
+          }`}
           style={{
-            left: particle.x,
-            top: particle.y,
-            backgroundColor: particle.color,
-            animation: `confetti-burst 2s ease-out forwards`,
-            '--angle': `${particle.angle}rad`,
-            '--velocity': particle.velocity
+            background: `linear-gradient(135deg, ${award.accentColor}40, ${award.accentColor}20)`,
+            left: `${(index % 2) * 50 + 10}%`,
+            top: `${Math.floor(index / 2) * 40 + 20}%`,
           }}
         />
       ))}
 
       <div className="max-w-7xl mx-auto px-8 md:px-16 lg:px-24 relative z-10">
-        {/* Section Header with animation */}
-        <div className="text-center mb-10 md:mb-16 relative">
-          <div className={`transition-all duration-1000 ${
-            isVisible ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'
-          }`}>
-            <div className="inline-block relative">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black relative">
-                Prestigious Awards
-                <div className="absolute -top-6 -right-6">
-                  <Sparkles className="w-8 h-8 text-yellow-400 animate-pulse" />
-                </div>
-              </h2>
-              <div className="mt-4 h-1 bg-gradient-to-r from-transparent via-yellow-400 to-transparent animate-shimmer" />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-16 gap-y-12">
+          {/* Section Header with animation */}
+          <div className="mb-12 relative">
+            <h2 className={`text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 transition-all duration-1000 ${
+              isVisible ? 'translate-x-0 opacity-100' : '-translate-x-20 opacity-0'
+            }`}>
+              AWARDS_
+            </h2>
+            
+            {/* Animated underline */}
+            <div className={`mt-4 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 transition-all duration-1000 ${
+              isVisible ? 'w-20 opacity-100' : 'w-0 opacity-0'
+            }`} />
+
+            {/* Decorative element */}
+            <div className="absolute -right-8 top-1/2 -translate-y-1/2 hidden md:block">
+              <div className="w-32 h-32 border-2 border-dashed border-gray-200 rounded-full animate-spin-slow opacity-50" />
             </div>
           </div>
-        </div>
 
-        {/* Awards List */}
-        <div className="space-y-12 md:space-y-16">
-          {awards.map((award, awardIndex) => {
-            const isActive = activeAward === award.id;
-            const AwardIcon = award.icon;
-            
-            return (
-              <div 
-                key={award.id}
-                className={`relative transition-all duration-700 ${
-                  isVisible ? 'translate-x-0 opacity-100' : awardIndex % 2 === 0 ? '-translate-x-20 opacity-0' : 'translate-x-20 opacity-0'
-                }`}
-                style={{ transitionDelay: `${awardIndex * 200}ms` }}
-                onClick={(e) => handleAwardClick(award.id, e)}
-                onMouseMove={handleMouseMove}
-              >
-                {/* Glow effect */}
-                <div className={`
-                  absolute -inset-4 bg-gradient-to-r ${award.color} rounded-3xl blur-2xl -z-10
-                  transition-opacity duration-500
-                  ${isActive ? 'opacity-30' : 'opacity-0'}
-                `} />
+          {/* Awards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 col-span-2">
+            {awards.map((award, index) => {
+              const isHovered = hoveredId === award.id;
+              const isExpanded = expandedId === award.id;
+              const AwardIcon = award.icon;
+              
+              return (
+                <article 
+                  key={award.id} 
+                  className={`group relative cursor-pointer transition-all duration-500 ${
+                    isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+                  }`}
+                  style={{ transitionDelay: `${index * 100 + 300}ms` }}
+                  onMouseEnter={() => setHoveredId(award.id)}
+                  onMouseLeave={() => {
+                    setHoveredId(null);
+                    setMousePos({ x: 0, y: 0 });
+                  }}
+                  onMouseMove={(e) => handleMouseMove(e, award.id)}
+                  onClick={() => setExpandedId(isExpanded ? null : award.id)}
+                >
+                  {/* Spotlight effect */}
+                  {isHovered && (
+                    <div 
+                      className="absolute rounded-full pointer-events-none transition-opacity duration-300 blur-2xl"
+                      style={{
+                        width: '200px',
+                        height: '200px',
+                        left: mousePos.x - 100,
+                        top: mousePos.y - 100,
+                        background: `radial-gradient(circle, ${award.accentColor}30, transparent 70%)`,
+                      }}
+                    />
+                  )}
 
-                <div className={`
-                  grid grid-cols-1 md:grid-cols-4 gap-8 items-center
-                  p-6 md:p-8 rounded-3xl backdrop-blur-sm
-                  transition-all duration-500 cursor-pointer
-                  ${isActive ? 'bg-white shadow-2xl scale-105' : 'bg-white/60 hover:bg-white/80 hover:shadow-xl'}
-                `}>
-                  {/* Award Number with 3D effect */}
-                  <div className="flex items-center justify-center md:justify-start relative">
-                    <div className="relative">
-                      <h4 className={`
-                        text-6xl md:text-7xl font-extrabold transition-all duration-500
-                        ${isActive ? `bg-gradient-to-br ${award.color} bg-clip-text text-transparent scale-110` : 'text-black opacity-50'}
-                      `}>
-                        {award.number}
-                      </h4>
-                      
-                      {/* Orbiting icon */}
-                      {isActive && (
-                        <div className="absolute -top-4 -right-4">
-                          <div className="animate-spin-slow">
-                            <AwardIcon className="w-10 h-10" style={{ color: award.accentColor }} />
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Award Details */}
-                  <div className="col-span-1 md:col-span-2 space-y-4">
-                    <div className="flex items-center gap-3 mb-6">
-                      <div className={`
-                        p-3 rounded-xl transition-all duration-500
-                        ${isActive ? `bg-gradient-to-br ${award.color} shadow-lg` : 'bg-gray-100'}
-                      `}>
-                        <AwardIcon 
-                          className={`w-6 h-6 transition-colors duration-300 ${
-                            isActive ? 'text-white' : 'text-gray-600'
-                          }`}
-                        />
-                      </div>
-                      <h3 className={`
-                        text-2xl md:text-3xl font-bold transition-all duration-300
-                        ${isActive ? `bg-gradient-to-r ${award.color} bg-clip-text text-transparent` : 'text-black'}
-                      `}>
-                        {award.category}
-                      </h3>
-                    </div>
-
-                    <div className="space-y-3">
-                      {award.achievements.map((achievement, index) => {
-                        const isHovered = hoveredAchievement === `${award.id}-${index}`;
-                        
-                        return (
-                          <div 
-                            key={index} 
-                            className={`
-                              flex gap-3 items-start p-3 rounded-xl transition-all duration-300
-                              ${isHovered ? 'bg-gradient-to-r ' + award.color + ' bg-opacity-10 translate-x-2 shadow-md' : 'bg-transparent'}
-                              ${isActive ? 'opacity-100' : 'opacity-80'}
-                            `}
-                            onMouseEnter={() => setHoveredAchievement(`${award.id}-${index}`)}
-                            onMouseLeave={() => setHoveredAchievement(null)}
-                          >
-                            <div className={`
-                              p-1 rounded-full transition-all duration-300
-                              ${isHovered ? 'bg-white shadow-lg scale-110' : 'bg-transparent'}
-                            `}>
-                              <Award 
-                                className={`w-5 h-5 flex-shrink-0 mt-1 transition-all duration-300 ${
-                                  isHovered ? 'rotate-12' : 'rotate-0'
-                                }`}
-                                style={{ color: isHovered ? award.accentColor : '#ef4444' }}
-                              />
-                            </div>
-                            <p className={`
-                              text-black text-sm md:text-lg leading-relaxed transition-all duration-300
-                              ${isHovered ? 'font-semibold' : 'font-normal'}
-                            `}>
-                              {achievement}
-                            </p>
-                          </div>
-                        );
-                      })}
-                    </div>
-
-                    {/* Click hint */}
-                    <p className={`
-                      text-xs text-gray-500 mt-4 transition-all duration-300
-                      ${isActive ? 'opacity-100' : 'opacity-0'}
-                    `}>
-                      ✨ Award activated! Click again to deactivate
-                    </p>
-                  </div>
-
-                  {/* Award Image with parallax */}
-                  <div className="relative h-64 md:h-80 w-full group">
-                    {/* Spotlight effect */}
-                    {isActive && (
-                      <div 
-                        className="absolute rounded-full pointer-events-none blur-3xl z-10 transition-opacity duration-300"
-                        style={{
-                          width: '300px',
-                          height: '300px',
-                          left: mousePos.x - 150,
-                          top: mousePos.y - 150,
-                          background: `radial-gradient(circle, ${award.accentColor}40, transparent 70%)`,
-                        }}
-                      />
-                    )}
-
-                    <div className={`
-                      relative h-full w-full overflow-hidden rounded-2xl shadow-lg
-                      transition-all duration-500
-                      ${isActive ? 'scale-105 shadow-2xl ring-4' : 'group-hover:scale-102'}
-                    `}
-                      style={{ ringColor: isActive ? award.accentColor : 'transparent' }}
-                    >
+                  {/* Card container */}
+                  <div className={`
+                    relative rounded-2xl border-2 transition-all duration-500 overflow-hidden
+                    ${isExpanded ? 'border-transparent shadow-2xl bg-white' : 'border-gray-100 bg-white/50'}
+                    ${isHovered && !isExpanded ? 'border-gray-200 shadow-xl -translate-y-2' : ''}
+                  `}>
+                    {/* Award Image */}
+                    <div className="relative h-48 w-full overflow-hidden">
                       <img
-                        className={`w-full h-full object-cover transition-all duration-700 ${
-                          isActive ? 'scale-110 brightness-110' : 'scale-100 brightness-100 group-hover:scale-105'
-                        }`}
-                        alt={`${award.category} award`}
                         src={award.image}
+                        alt={`${award.category} award`}
+                        className={`w-full h-full object-cover transition-all duration-700 ${
+                          isExpanded ? 'scale-110 brightness-110' : 'scale-100 brightness-100'
+                        } ${isHovered ? 'scale-105' : ''}`}
                       />
                       
                       {/* Gradient overlay */}
                       <div className={`
-                        absolute inset-0 bg-gradient-to-t from-black/50 to-transparent
+                        absolute inset-0 bg-gradient-to-t from-black/60 to-transparent
                         transition-opacity duration-500
-                        ${isActive ? 'opacity-30' : 'opacity-0 group-hover:opacity-20'}
+                        ${isExpanded ? 'opacity-40' : 'opacity-30'}
                       `} />
 
-                      {/* Shimmer effect */}
+                      {/* Icon badge on image */}
                       <div className={`
-                        absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent
-                        transition-all duration-1000
-                        ${isActive ? 'opacity-30 animate-shimmer-fast' : 'opacity-0'}
-                      `} />
+                        absolute top-4 right-4 p-3 rounded-xl transition-all duration-500
+                        ${isExpanded ? `bg-gradient-to-br ${award.color} shadow-lg scale-110` : 'bg-white/90 backdrop-blur-sm'}
+                      `}>
+                        <AwardIcon 
+                          className={`w-6 h-6 transition-colors duration-300 ${
+                            isExpanded ? 'text-white' : 'text-gray-700'
+                          }`}
+                        />
+                      </div>
+
+                      {/* Achievement count badge */}
+                      <div className={`
+                        absolute bottom-4 left-4 px-3 py-1 rounded-full text-xs font-bold
+                        transition-all duration-300
+                        ${isExpanded ? `bg-gradient-to-r ${award.color} text-white` : 'bg-white/90 backdrop-blur-sm text-gray-700'}
+                      `}>
+                        {award.achievements.length} Awards
+                      </div>
                     </div>
 
-                    {/* Badge counter */}
-                    <div className={`
-                      absolute -bottom-3 -right-3 w-12 h-12 rounded-full flex items-center justify-center
-                      font-bold text-white shadow-xl transition-all duration-500
-                      ${isActive ? `bg-gradient-to-br ${award.color} scale-110 rotate-12` : 'bg-gray-600 scale-100'}
-                    `}>
-                      {award.achievements.length}
+                    {/* Content section */}
+                    <div className="p-6">
+                      {/* Gradient overlay on content */}
+                      <div className={`
+                        absolute inset-0 bg-gradient-to-br ${award.color} opacity-0 transition-opacity duration-500
+                        ${isExpanded ? 'opacity-5' : ''}
+                      `} />
+
+                      {/* Corner accent */}
+                      <div className={`
+                        absolute top-48 right-0 w-20 h-20 transition-all duration-500
+                        ${isHovered || isExpanded ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}
+                      `}>
+                        <div className={`absolute top-0 right-0 w-full h-full bg-gradient-to-br ${award.color} opacity-10 rounded-bl-full`} />
+                      </div>
+
+                      {/* Year with icon */}
+                      <div className="flex items-center gap-2 mb-3 text-xs text-gray-500 uppercase tracking-wider">
+                        <Calendar size={12} className={`transition-colors duration-300 ${isHovered ? 'text-yellow-500' : ''}`} />
+                        <time>{award.year}</time>
+                      </div>
+
+                      {/* Category title with character reveal */}
+                      <h3 className={`
+                        text-xl md:text-2xl font-bold mb-4 leading-tight relative z-10
+                        transition-all duration-300
+                        ${isExpanded ? `bg-gradient-to-r ${award.color} bg-clip-text text-transparent` : 'text-gray-900'}
+                      `}>
+                        {award.category.split('').map((char, i) => (
+                          <span
+                            key={i}
+                            className={`inline-block transition-all duration-300 ${
+                              isHovered ? 'translate-y-0 opacity-100' : 'translate-y-1 opacity-100'
+                            }`}
+                            style={{
+                              transitionDelay: isHovered ? `${i * 20}ms` : '0ms',
+                              transform: isHovered ? `translateY(-2px)` : 'translateY(0)'
+                            }}
+                          >
+                            {char === ' ' ? '\u00A0' : char}
+                          </span>
+                        ))}
+                      </h3>
+
+                      {/* Expandable achievements list */}
+                      <div className={`
+                        overflow-hidden transition-all duration-500
+                        ${isExpanded ? 'max-h-96 opacity-100 mb-4' : 'max-h-0 opacity-0'}
+                      `}>
+                        <div className="space-y-2">
+                          {award.achievements.map((achievement, achievementIndex) => (
+                            <div 
+                              key={achievementIndex}
+                              className="flex gap-2 items-start text-sm text-gray-600 leading-relaxed"
+                            >
+                              <Award 
+                                className="w-4 h-4 flex-shrink-0 mt-0.5"
+                                style={{ color: award.accentColor }}
+                              />
+                              <p>{achievement}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Progress bar */}
+                      <div className={`
+                        h-0.5 bg-gray-200 rounded-full overflow-hidden transition-all duration-500 mb-4
+                        ${isHovered || isExpanded ? 'opacity-100' : 'opacity-0'}
+                      `}>
+                        <div 
+                          className={`h-full bg-gradient-to-r ${award.color} transition-all duration-1000 ${
+                            isExpanded ? 'w-full' : isHovered ? 'w-1/2' : 'w-0'
+                          }`}
+                        />
+                      </div>
+
+                      {/* View Details with arrow animation */}
+                      <button
+                        className={`
+                          inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider
+                          transition-all duration-300 relative z-10
+                          ${isExpanded ? `bg-gradient-to-r ${award.color} bg-clip-text text-transparent` : 'text-gray-900'}
+                        `}
+                      >
+                        <span>{isExpanded ? 'COLLAPSE' : 'VIEW DETAILS'}</span>
+                        <ArrowRight 
+                          size={16} 
+                          className={`transition-all duration-300 ${
+                            isHovered ? 'translate-x-2' : 'translate-x-0'
+                          } ${isExpanded ? 'rotate-90' : ''}`}
+                          style={{ color: isExpanded ? award.accentColor : 'currentColor' }}
+                        />
+                      </button>
+
+                      {/* Floating particles */}
+                      {isHovered && (
+                        <>
+                          {[...Array(3)].map((_, i) => (
+                            <div
+                              key={i}
+                              className="absolute pointer-events-none"
+                              style={{
+                                left: `${20 + i * 30}%`,
+                                bottom: '10%',
+                              }}
+                            >
+                              <div
+                                className="w-1.5 h-1.5 rounded-full animate-float-up"
+                                style={{
+                                  backgroundColor: award.accentColor,
+                                  animationDelay: `${i * 0.2}s`,
+                                  boxShadow: `0 0 8px ${award.accentColor}`
+                                }}
+                              />
+                            </div>
+                          ))}
+                        </>
+                      )}
+
+                      {/* Number indicator */}
+                      <div className={`
+                        absolute bottom-4 right-4 w-8 h-8 rounded-full flex items-center justify-center
+                        font-bold text-xs transition-all duration-500
+                        ${isExpanded ? `bg-gradient-to-br ${award.color} text-white shadow-lg scale-110` : 'bg-gray-100 text-gray-400'}
+                      `}>
+                        {award.id}
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Decorative corner elements */}
-                {isActive && (
-                  <>
-                    <div className="absolute -top-2 -left-2 w-8 h-8 border-l-4 border-t-4 rounded-tl-xl animate-pulse"
-                      style={{ borderColor: award.accentColor }} />
-                    <div className="absolute -bottom-2 -right-2 w-8 h-8 border-r-4 border-b-4 rounded-br-xl animate-pulse"
-                      style={{ borderColor: award.accentColor }} />
-                  </>
-                )}
-              </div>
-            );
-          })}
+                  {/* Glow effect on hover */}
+                  <div className={`
+                    absolute -inset-1 bg-gradient-to-br ${award.color} rounded-2xl blur-xl -z-10
+                    transition-opacity duration-500
+                    ${isExpanded ? 'opacity-30' : 'opacity-0'}
+                  `} />
+                </article>
+              );
+            })}
+          </div>
         </div>
       </div>
 
       <style jsx>{`
-        @keyframes float-award {
-          0%, 100% {
-            transform: translateY(0) rotate(0deg);
-            opacity: 0.2;
+        @keyframes float-up {
+          0% {
+            transform: translateY(0) scale(1);
+            opacity: 0;
           }
           50% {
-            transform: translateY(-30px) rotate(180deg);
-            opacity: 0.4;
-          }
-        }
-        @keyframes shimmer {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(100%); }
-        }
-        @keyframes shimmer-fast {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(100%); }
-        }
-        @keyframes confetti-burst {
-          0% {
-            transform: translate(0, 0) rotate(0deg);
             opacity: 1;
           }
           100% {
-            transform: translate(
-              calc(cos(var(--angle)) * var(--velocity) * 100px),
-              calc(sin(var(--angle)) * var(--velocity) * 100px + 200px)
-            ) rotate(720deg);
+            transform: translateY(-80px) scale(0);
             opacity: 0;
           }
         }
         @keyframes spin-slow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
         }
-        .animate-float-award {
-          animation: float-award 10s ease-in-out infinite;
-        }
-        .animate-shimmer {
-          animation: shimmer 3s ease-in-out infinite;
-        }
-        .animate-shimmer-fast {
-          animation: shimmer-fast 1.5s ease-in-out infinite;
+        .animate-float-up {
+          animation: float-up 2s ease-out infinite;
         }
         .animate-spin-slow {
-          animation: spin-slow 4s linear infinite;
+          animation: spin-slow 20s linear infinite;
         }
       `}</style>
     </section>

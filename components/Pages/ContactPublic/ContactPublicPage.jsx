@@ -93,13 +93,13 @@ export default function ContactForm() {
       details: "Sun - Thurs, 09:00 AM - 6:00 PM",
       color: "bg-purple-50 text-purple-500",
     },
-    {
-      icon: <IoGlobeOutline className="text-3xl" />,
-      title: "Website",
-      details: "https://www.a-linebrands.com/",
-      link: "https://www.a-linebrands.com/",
-      color: "bg-amber-50 text-amber-500",
-    },
+    // {
+    //   icon: <IoGlobeOutline className="text-3xl" />,
+    //   title: "Website",
+    //   details: "https://www.a-linebrands.com/",
+    //   link: "https://www.a-linebrands.com/",
+    //   color: "bg-amber-50 text-amber-500",
+    // },
   ];
 
   const socialLinks = [
@@ -125,18 +125,18 @@ export default function ContactForm() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 0.4 }}
-      className="bg-white rounded-2xl shadow-xl overflow-hidden"
+      className="bg-white rounded-2xl shadow-xl overflow-hidden pt-16 md:pt-0"
     >
       <div className="grid grid-cols-1 lg:grid-cols-5">
         {/* Left Section */}
-        <div className="lg:col-span-2  p-8 text-black flex flex-col justify-between">
+        <div className="lg:col-span-2  p-8 text-black flex flex-col ">
           <div>
-            <h4 className="text-black text-4xl font-bold mb-6">Connect With Us</h4>
-            <p className="text-gray-700 mb-8">
+            <h4 className="text-black text-4xl font-bold mb-4">Connect With Us</h4>
+            <p className="text-gray-700 mb-4">
               Reach out to learn more about our products and services.
             </p>
 
-            <div className="space-y-6 mb-10">
+            <div className="space-y-4 mb-4">
               {contactDetails.map((detail, index) => (
                 <div key={index} className="flex items-start gap-3">
                   <div className={`rounded-full p-3 ${detail.color} text-lg`}>
@@ -268,7 +268,7 @@ export default function ContactForm() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-[linear-gradient(to_right,_#8B0000,_black,_#8B0000)] text-white py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium cursor-pointer"
+                className="w-full  text-black py-2 px-4 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium cursor-pointer"
               >
                 {isLoading ? (
                   <div className="flex items-center justify-center">

@@ -4,16 +4,42 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import ContactForm from "../Pages/ContactPublic/ContactPublicPage";
 
-
-export default function FloatingButtons({ children }) {
+export default function FloatingButtons({ 
+  children, 
+  isModalOpen: externalIsModalOpen, 
+  setIsModalOpen: externalSetIsModalOpen 
+}) {
   const [showGoTop, setShowGoTop] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  // Use internal state as fallback if props aren't provided
+  const [internalModalOpen, setInternalModalOpen] = useState(false);
+  
+  // Use external state if provided, otherwise use internal state
+  const isModalOpen = externalIsModalOpen ?? internalModalOpen;
+  const setIsModalOpen = externalSetIsModalOpen ?? setInternalModalOpen;
 
   useEffect(() => {
     const handleScroll = () => setShowGoTop(window.scrollY > 300);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    console.log("Modal state changed:", isModalOpen);
+  }, [isModalOpen]);
+
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isModalOpen]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -32,7 +58,7 @@ export default function FloatingButtons({ children }) {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3 }}
-            className="bg-white text-black rounded-full shadow-lg hover:bg-gray-200 w-16 h-16 text-4xl flex items-center justify-center"
+            className="bg-white text-black rounded-full shadow-lg hover:bg-gray-200 w-12 h-12 text-2xl flex items-center justify-center"
           >
             ↑
           </motion.button>
@@ -40,11 +66,15 @@ export default function FloatingButtons({ children }) {
 
         {/* Message Button */}
         <motion.button
-          onClick={() => setIsModalOpen(true)}
+          onClick={() => {
+            console.log("Message button clicked");
+            console.log("setIsModalOpen type:", typeof setIsModalOpen);
+            setIsModalOpen(true);
+          }}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.3 }}
-          className="bg-red-500 text-white rounded-full shadow-lg w-16 h-16 hover:bg-red-600 transition-colors flex items-center justify-center text-2xl"
+          className="bg-red-500 text-white rounded-full shadow-lg w-12 h-12 hover:bg-red-600 transition-colors flex items-center justify-center text-xl"
         >
           💬
         </motion.button>
@@ -54,7 +84,7 @@ export default function FloatingButtons({ children }) {
       <AnimatePresence>
         {isModalOpen && (
           <motion.div
-            className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4 overflow-y-auto"
+            className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-[9999] p-4 overflow-y-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

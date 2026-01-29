@@ -14,7 +14,7 @@ const images = [
     title: "Business consultancy",
     category: "Brand Identity",
     description: [
-      "We help businesses see the bigger picture, and act on it.From go- to - market strategies to operational optimization, our consultancy bridges insight with action to drive sustainable growth.",
+      "Clarity-led business thinking that aligns vision, growth, and execution.",
     ],
   },
   {
@@ -23,7 +23,7 @@ const images = [
     title: "Brand consultancy and design",
     category: "UI/UX Design",
     description: [
-      "Your brand is an experience, not just a logo. It’s how the world sees you.We shape distinct brand identities through strategic positioning, storytelling, and striking visual design that connect with your audience and stand the test of time.",
+      "Positioning brands with purpose, then designing systems that scale.",
     ],
   },
   {
@@ -31,9 +31,7 @@ const images = [
     alt: "Creative",
     title: "Creative",
     category: "Web Development",
-    description: [
-      "We bring ideas to life with concepts that cut through the noise. From a disruptive campaign to a subtle narrative shift, our creative work sparks emotion, builds engagement, and drives results.",
-    ],
+    description: ["Ideas built to cut through culture, attention, and noise."],
   },
   {
     src: "/assets/Work/horizontalImage/8.png",
@@ -41,7 +39,7 @@ const images = [
     title: "PR & Public affairs",
     category: "3D Design",
     description: [
-      "Perception is power. We manage reputations, shape publicnarratives, and build trust across media, stakeholders, andpolicy spaces. With strong networks and sharp messaging, we keep you in control of the conversation.",
+      "Shaping narratives, managing perception, and influencing trust where it matters.",
     ],
   },
   {
@@ -50,7 +48,7 @@ const images = [
     title: "⁠Brand partnership and sponsorship, Events",
     category: "3D Design",
     description: [
-      "We connect brands to the right moments, platforms,and people.From high- impact partnerships toimmersive event experiences, we build engagement strategies that extend your brand’s reach and relevance.",
+      "Strategic collaborations and experiences that amplify relevance and reach.",
     ],
   },
   {
@@ -59,7 +57,7 @@ const images = [
     title: "Production and content",
     category: "3D Design",
     description: [
-      "From scripts to screen and everything in between, we produce content that captivates. Be it video, digital, print, or experiential, our production management ensures every frame speaks your personalized brand language.",
+      "High-impact content crafted for platforms, performance, and longevity.",
     ],
   },
   {
@@ -68,7 +66,7 @@ const images = [
     title: "UI/UX Design",
     category: "3D Design",
     description: [
-      "Seamless, smart, and user-first. We design digital experiences that feel intuitive and look stunning.From wireframes to final launch, we blend aesthetics with functionality to drive engagement and conversion.",
+      "Designing intuitive digital experiences that convert intent into action.",
     ],
   },
 ];
@@ -78,7 +76,7 @@ const fadeInUp = {
   animate: { opacity: 1, y: 0 },
 };
 
-export default function ServicePublic() {
+export default function ServicePublic({ setIsModalOpen }) {
   const sectionRef = useRef(null);
   const itemsRef = useRef([]);
   const [loaded, setLoaded] = useState(Array(images.length).fill(false));
@@ -182,10 +180,10 @@ export default function ServicePublic() {
 
             <h1 className="text-4xl md:text-7xl lg:text-8xl font-bold text-black mb-6 leading-tight text-right pt-28">
               Our Services That
-              <span className="text-red-500 relative inline-block pl-3">
+              <span className="text-white bg-black px-2 relative inline-block pl-3">
                 Speak
                 <motion.span
-                  className="absolute bottom-2 left-0 w-full h-3 bg-red-500/20"
+                  className="absolute bottom-2 left-0 w-full h-3 bg-white"
                   initial={{ scaleX: 0 }}
                   whileInView={{ scaleX: 1 }}
                   viewport={{ once: true }}
@@ -323,7 +321,7 @@ export default function ServicePublic() {
       <div className="bg-[linear-gradient(to_right, text-black p-6">
         <div className="container mx-auto pt-10">
           <h2 className=" text-3xl md:text-5xl font-extrabold">
-            Why Choose <span className="text-red-500">US</span>
+            Why Choose <span className="text-white bg-black px-1">US</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 py-6">
             <div>
@@ -332,9 +330,9 @@ export default function ServicePublic() {
               </h4>
               <h4 className="font-bold text-2xl py-4">Marketing That Hits</h4>
               <p>
-                At A-Line, we don’t shoot in the dark — we use data,
-                strategy, and creativity to deliver campaigns that convert.
-                Every click counts.
+                At A-Line, we don’t shoot in the dark — we use data, strategy,
+                and creativity to deliver campaigns that convert. Every click
+                counts.
               </p>
             </div>
             <div>
@@ -364,7 +362,7 @@ export default function ServicePublic() {
           </div>
           <h4 className="text-2xl md:text-3xl font-bold py-5 md:py-16 text-center">
             From bold ideas to real results —
-            <span className="bg-red-500">
+            <span className="">
               we build marketing that performs.
             </span>
           </h4>
@@ -393,6 +391,14 @@ export default function ServicePublic() {
             Let&apos;s collaborate and bring your vision to life
           </motion.p>
           <motion.button
+            onClick={() => {
+              console.log("Button clicked!"); // Add this
+              console.log("setIsModalOpen:", setIsModalOpen); // Check if function exists
+              if (setIsModalOpen) {
+                setIsModalOpen(true);
+                console.log("Modal should open now"); // Confirm it was called
+              }
+            }}
             className="px-10 py-5 bg-red-500 text-white rounded-full font-medium text-lg hover:bg-red-600 transition-colors"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}

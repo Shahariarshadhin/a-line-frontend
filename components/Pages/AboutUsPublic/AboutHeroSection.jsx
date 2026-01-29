@@ -59,7 +59,7 @@ export default function HeroSection() {
                 isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
               }`}
             >
-              Aligning brands so they stand out and stand for something.
+             We align brands. With purpose. With people. With performance.
             </p>
             {/* <img
               src="/api/placeholder/300/200"

@@ -1,10 +1,15 @@
+"use client";
+import { useState } from "react";
+
 import ServicePublic from "@/components/Pages/ServicePublic/ServicePublicPage";
+import FloatingButtons from "@/components/Shared/FloatingButtons";
 
+export default function ServicesPage() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-export default function Page() {
   return (
-    <div>
-      <ServicePublic />
-    </div>
-  )
+    <FloatingButtons isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}>
+      <ServicePublic setIsModalOpen={setIsModalOpen} />
+    </FloatingButtons>
+  );
 }
