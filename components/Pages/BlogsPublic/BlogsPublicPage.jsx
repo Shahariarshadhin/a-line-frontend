@@ -320,7 +320,7 @@ const BlogApp = () => {
                   {blog.category}
                 </div>
                 <h2
-                  className="text-2xl font-bold mb-3 cursor-pointer hover:text-blue-600 transition-colors"
+                  className="text-2xl font-bold mb-3 cursor-pointer hover:text-gray-600 transition-colors"
                   onClick={() => handleBlogClick(blog)}
                 >
                   {blog.title}
@@ -340,7 +340,7 @@ const BlogApp = () => {
                 </div>
                 <button
                   onClick={() => handleBlogClick(blog)}
-                  className="text-sm font-semibold hover:underline text-blue-600 flex items-center gap-1 group/btn transition-all hover:gap-2"
+                  className="text-sm font-semibold hover:underline text-black flex items-center gap-1 group/btn transition-all hover:gap-2"
                 >
                   Read More
                   <ArrowLeft

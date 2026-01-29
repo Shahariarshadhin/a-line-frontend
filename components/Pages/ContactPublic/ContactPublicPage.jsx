@@ -268,7 +268,7 @@ export default function ContactForm() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full  text-black py-2 px-4 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium cursor-pointer"
+                className="w-full  text-white bg-black py-2 px-4 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium cursor-pointer"
               >
                 {isLoading ? (
                   <div className="flex items-center justify-center">

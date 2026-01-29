@@ -288,7 +288,7 @@ export default function ServicePublic({ setIsModalOpen }) {
 
                       {/* Right - Information */}
                       <div className="bg-white flex flex-col justify-center px-8 md:px-12 lg:px-16 py-12">
-                        <span className="text-red-500 text-sm font-bold mb-4 tracking-wider uppercase">
+                        <span className="text-black text-sm font-bold mb-4 tracking-wider uppercase">
                           {img.category}
                         </span>
 
@@ -301,7 +301,7 @@ export default function ServicePublic({ setIsModalOpen }) {
                         ))}
 
                         <div>
-                          <button className="group inline-flex items-center gap-3 px-8 py-4 bg-red-500 text-white font-bold text-sm md:text-base uppercase tracking-wide hover:bg-red-600 transition-all">
+                          <button className="group inline-flex items-center gap-3 px-8 py-4 bg-black text-white font-bold text-sm md:text-base uppercase tracking-wide hover:bg-red-600 transition-all">
                             Explore More
                             <span className="transform group-hover:translate-x-1 transition-transform">
                               →
@@ -399,7 +399,7 @@ export default function ServicePublic({ setIsModalOpen }) {
                 console.log("Modal should open now"); // Confirm it was called
               }
             }}
-            className="px-10 py-5 bg-red-500 text-white rounded-full font-medium text-lg hover:bg-red-600 transition-colors"
+            className="px-10 py-3 bg-black text-white rounded-full font-medium text-lg transition-colors"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

@@ -38,7 +38,7 @@ export default function HeroSection() {
 
       {/* Red Stripe with Animation */}
       <div 
-        className={`absolute top-1/4 left-0 right-0 h-24 bg-red-600 z-10 transition-all duration-1000 ${
+        className={`absolute top-1/4 left-0 right-0 h-24 bg-black z-10 transition-all duration-1000 ${
           isVisible ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'
         }`}
       />

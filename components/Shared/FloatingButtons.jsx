@@ -58,7 +58,7 @@ export default function FloatingButtons({
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3 }}
-            className="bg-white text-black rounded-full shadow-lg hover:bg-gray-200 w-12 h-12 text-2xl flex items-center justify-center"
+            className="bg-black text-white rounded-full shadow-lg hover:bg-gray-200 w-12 h-12 text-2xl flex items-center justify-center"
           >
             ↑
           </motion.button>
@@ -74,7 +74,7 @@ export default function FloatingButtons({
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.3 }}
-          className="bg-red-500 text-white rounded-full shadow-lg w-12 h-12 hover:bg-red-600 transition-colors flex items-center justify-center text-xl"
+          className="bg-black text-white rounded-full shadow-lg w-12 h-12 transition-colors flex items-center justify-center text-xl"
         >
           💬
         </motion.button>
