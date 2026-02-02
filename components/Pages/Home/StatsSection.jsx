@@ -99,7 +99,7 @@ export default function StatsSection() {
   return (
     <section className="w-full" ref={sectionRef}>
       {/* Stats Counter */}
-      <div className="bg-gradient-to-b from-gray-50 to-gray-100 py-12 md:py-16 relative overflow-hidden">
+      <div className="bg-linear-to-b from-gray-50 to-gray-100 py-12 md:py-16 relative overflow-hidden">
         {/* Animated background elements */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{
@@ -142,7 +142,7 @@ export default function StatsSection() {
                 >
                   {/* Glow effect */}
                   <div className={`
-                    absolute inset-0 bg-gradient-to-b ${stat.color} rounded-3xl blur-2xl -z-10
+                    absolute inset-0 bg-linear-to-b ${stat.color} rounded-3xl blur-2xl -z-10
                     transition-opacity duration-500
                     ${isHovered ? 'opacity-20' : 'opacity-0'}
                   `} />
@@ -163,7 +163,7 @@ export default function StatsSection() {
                     {/* Icon */}
                     <div className={`
                       relative p-3 rounded-2xl transition-all duration-500
-                      ${isHovered ? `bg-gradient-to-br ${stat.color} shadow-xl scale-110 rotate-12` : 'bg-white/50 backdrop-blur-sm'}
+                      ${isHovered ? `bg-linear-to-br ${stat.color} shadow-xl scale-110 rotate-12` : 'bg-white/50 backdrop-blur-sm'}
                     `}>
                       <stat.icon 
                         size={32} 
@@ -204,7 +204,7 @@ export default function StatsSection() {
                   <div className="relative mb-2">
                     <div className={`
                       text-4xl md:text-5xl font-bold transition-all duration-300
-                      ${isHovered ? `bg-gradient-to-r ${stat.color} bg-clip-text text-transparent scale-110` : 'text-gray-900'}
+                      ${isHovered ? `bg-linear-to-r ${stat.color} bg-clip-text text-transparent scale-110` : 'text-gray-900'}
                     `}>
                       {currentCount}
                       {isHovered && currentCount === stat.number && (
@@ -254,13 +254,13 @@ export default function StatsSection() {
 
                   {/* Animated underline */}
                   <div className={`
-                    mt-2 h-0.5 bg-gradient-to-r ${stat.color} rounded-full transition-all duration-500
+                    mt-2 h-0.5 bg-linear-to-r ${stat.color} rounded-full transition-all duration-500
                     ${isHovered ? 'w-full opacity-100' : 'w-0 opacity-0'}
                   `} />
 
                   {/* Separator line */}
                   {index < stats.length - 1 && (
-                    <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-px h-20 bg-gradient-to-b from-transparent via-gray-300 to-transparent"></div>
+                    <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-px h-20 bg-linear-to-b from-transparent via-gray-300 to-transparent"></div>
                   )}
                 </div>
               );
@@ -270,9 +270,9 @@ export default function StatsSection() {
       </div>
 
       {/* Orange Gradient Banner with 3D Animation */}
-      <div className="relative w-full h-64 md:h-80 bg-gradient-to-r from-orange-500 via-orange-400 to-yellow-400 overflow-hidden">
+      <div className="relative w-full h-64 md:h-80 bg-linear-to-r from-orange-500 via-orange-400 to-yellow-400 overflow-hidden">
         {/* Animated gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-orange-600/0 via-yellow-300/30 to-orange-600/0 animate-shimmer-banner"></div>
+        <div className="absolute inset-0 bg-linear-to-r from-orange-600/0 via-yellow-300/30 to-orange-600/0 animate-shimmer-banner"></div>
         
         {/* Floating shapes */}
         <div className="absolute inset-0">

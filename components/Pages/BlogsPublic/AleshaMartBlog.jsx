@@ -6,9 +6,9 @@ const AleshaMartBlog = () => (
       />
   
       <div className="prose max-w-none space-y-6 text-gray-700 leading-relaxed">
-        <h1 className="text-3xl font-bold text-black mb-6">
+        <h2 className="text-3xl font-bold text-black mb-6">
           How Alesha Mart Disrupted Bangladesh&apos;s E-Commerce Market — Reaching 30 Million People in One Month
-        </h1>
+        </h2>
   
         <p>
           The e-commerce industry in Bangladesh is on a growth trajectory but

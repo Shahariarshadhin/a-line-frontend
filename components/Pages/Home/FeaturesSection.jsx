@@ -90,13 +90,13 @@ export default function FeaturesSection() {
                       absolute inset-0 rounded-full transition-all duration-700
                       ${isHovered ? 'scale-150 opacity-0' : 'scale-100 opacity-0'}
                     `}>
-                      <div className={`w-20 h-20 mx-auto rounded-full bg-gradient-to-br ${feature.color} opacity-20 animate-ping`}></div>
+                      <div className={`w-20 h-20 mx-auto rounded-full bg-linear-to-br ${feature.color} opacity-20 animate-ping`}></div>
                     </div>
                     
                     {/* Icon */}
                     <div className={`
                       relative p-4 rounded-full transition-all duration-500
-                      ${isActive ? `bg-gradient-to-br ${feature.color}` : 'bg-gray-100'}
+                      ${isActive ? `bg-linear-to-br ${feature.color}` : 'bg-gray-100'}
                       ${isHovered ? 'scale-110 rotate-12' : 'scale-100 rotate-0'}
                     `}>
                       <feature.icon 
@@ -112,7 +112,7 @@ export default function FeaturesSection() {
                   {/* Title */}
                   <h3 className={`
                     text-xl font-bold mb-4 tracking-wide transition-all duration-300
-                    ${isActive ? 'bg-gradient-to-r ' + feature.color + ' bg-clip-text text-transparent scale-110' : 'text-gray-900'}
+                    ${isActive ? 'bg-linear-to-r ' + feature.color + ' bg-clip-text text-transparent scale-110' : 'text-gray-900'}
                   `}>
                     {feature.title}
                   </h3>
@@ -130,7 +130,7 @@ export default function FeaturesSection() {
                   {/* Interactive indicator */}
                   <div className={`
                     mt-4 h-1 rounded-full transition-all duration-500
-                    ${isActive ? `bg-gradient-to-r ${feature.color} w-full` : 'bg-gray-300 w-0'}
+                    ${isActive ? `bg-linear-to-r ${feature.color} w-full` : 'bg-gray-300 w-0'}
                   `}></div>
                 </div>
 
@@ -140,7 +140,7 @@ export default function FeaturesSection() {
                     {[...Array(3)].map((_, i) => (
                       <div
                         key={i}
-                        className={`absolute w-2 h-2 rounded-full bg-gradient-to-r ${feature.color} animate-float-up`}
+                        className={`absolute w-2 h-2 rounded-full bg-linear-to-r ${feature.color} animate-float-up`}
                         style={{
                           left: `${50 + (i - 1) * 20}%`,
                           bottom: '20%',

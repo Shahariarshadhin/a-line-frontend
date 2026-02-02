@@ -66,7 +66,7 @@ export default function NewsSection() {
   };
 
   return (
-    <section className="w-full py-16 md:py-24 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
+    <section className="w-full py-16 md:py-24 bg-linear-to-b from-white to-gray-50 relative overflow-hidden">
       {/* Animated background pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -101,7 +101,7 @@ export default function NewsSection() {
             </h2>
             
             {/* Animated underline */}
-            <div className={`mt-4 h-1 bg-gradient-to-r from-orange-500 to-red-500 transition-all duration-1000 ${
+            <div className={`mt-4 h-1 bg-linear-to-r from-orange-500 to-red-500 transition-all duration-1000 ${
               isVisible ? 'w-20 opacity-100' : 'w-0 opacity-0'
             }`} />
 
@@ -154,7 +154,7 @@ export default function NewsSection() {
                   `}>
                     {/* Gradient overlay on hover */}
                     <div className={`
-                      absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 transition-opacity duration-500
+                      absolute inset-0 bg-linear-to-br ${item.color} opacity-0 transition-opacity duration-500
                       ${isExpanded ? 'opacity-5' : ''}
                     `} />
 
@@ -163,14 +163,14 @@ export default function NewsSection() {
                       absolute top-0 right-0 w-20 h-20 transition-all duration-500
                       ${isHovered || isExpanded ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}
                     `}>
-                      <div className={`absolute top-0 right-0 w-full h-full bg-gradient-to-br ${item.color} opacity-10 rounded-bl-full`} />
+                      <div className={`absolute top-0 right-0 w-full h-full bg-linear-to-br ${item.color} opacity-10 rounded-bl-full`} />
                     </div>
 
                     {/* Category badge */}
                     <div className={`
                       inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-3
                       transition-all duration-300
-                      ${isExpanded ? `bg-gradient-to-r ${item.color} text-white shadow-lg` : 'bg-gray-100 text-gray-600'}
+                      ${isExpanded ? `bg-linear-to-r ${item.color} text-white shadow-lg` : 'bg-gray-100 text-gray-600'}
                     `}>
                       <Tag size={12} />
                       {item.category}
@@ -186,7 +186,7 @@ export default function NewsSection() {
                     <h3 className={`
                       text-xl md:text-2xl font-bold mb-4 leading-tight relative z-10
                       transition-all duration-300
-                      ${isExpanded ? `bg-gradient-to-r ${item.color} bg-clip-text text-transparent` : 'text-gray-900'}
+                      ${isExpanded ? `bg-linear-to-r ${item.color} bg-clip-text text-transparent` : 'text-gray-900'}
                     `}>
                       <a href={item.link} className="block">
                         {item.title.split('').map((char, i) => (
@@ -222,7 +222,7 @@ export default function NewsSection() {
                       ${isHovered || isExpanded ? 'opacity-100' : 'opacity-0'}
                     `}>
                       <div 
-                        className={`h-full bg-gradient-to-r ${item.color} transition-all duration-1000 ${
+                        className={`h-full bg-linear-to-r ${item.color} transition-all duration-1000 ${
                           isExpanded ? 'w-full' : isHovered ? 'w-1/2' : 'w-0'
                         }`}
                       />
@@ -234,7 +234,7 @@ export default function NewsSection() {
                       className={`
                         inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider
                         transition-all duration-300 relative z-10
-                        ${isExpanded ? `bg-gradient-to-r ${item.color} bg-clip-text text-transparent` : 'text-gray-900'}
+                        ${isExpanded ? `bg-linear-to-r ${item.color} bg-clip-text text-transparent` : 'text-gray-900'}
                       `}
                     >
                       <span>READ MORE</span>
@@ -276,7 +276,7 @@ export default function NewsSection() {
                     <div className={`
                       absolute bottom-4 right-4 w-8 h-8 rounded-full flex items-center justify-center
                       font-bold text-xs transition-all duration-500
-                      ${isExpanded ? `bg-gradient-to-br ${item.color} text-white shadow-lg scale-110` : 'bg-gray-100 text-gray-400'}
+                      ${isExpanded ? `bg-linear-to-br ${item.color} text-white shadow-lg scale-110` : 'bg-gray-100 text-gray-400'}
                     `}>
                       {item.id}
                     </div>
@@ -284,7 +284,7 @@ export default function NewsSection() {
 
                   {/* Glow effect on hover */}
                   <div className={`
-                    absolute -inset-1 bg-gradient-to-br ${item.color} rounded-2xl blur-xl -z-10
+                    absolute -inset-1 bg-linear-to-br ${item.color} rounded-2xl blur-xl -z-10
                     transition-opacity duration-500
                     ${isExpanded ? 'opacity-30' : 'opacity-0'}
                   `} />

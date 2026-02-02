@@ -54,7 +54,7 @@ export default function AwardsSection() {
   };
 
   return (
-    <section className="w-full py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+    <section className="w-full py-16 md:py-24 bg-linear-to-b from-gray-50 to-white relative overflow-hidden">
       {/* Animated background pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -89,7 +89,7 @@ export default function AwardsSection() {
             </h2>
             
             {/* Animated underline */}
-            <div className={`mt-4 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 transition-all duration-1000 ${
+            <div className={`mt-4 h-1 bg-linear-to-r from-yellow-400 to-orange-500 transition-all duration-1000 ${
               isVisible ? 'w-20 opacity-100' : 'w-0 opacity-0'
             }`} />
 
@@ -153,7 +153,7 @@ export default function AwardsSection() {
                       
                       {/* Gradient overlay */}
                       <div className={`
-                        absolute inset-0 bg-gradient-to-t from-black/60 to-transparent
+                        absolute inset-0 bg-linear-to-t from-black/60 to-transparent
                         transition-opacity duration-500
                         ${isExpanded ? 'opacity-40' : 'opacity-30'}
                       `} />
@@ -161,7 +161,7 @@ export default function AwardsSection() {
                       {/* Icon badge on image */}
                       <div className={`
                         absolute top-4 right-4 p-3 rounded-xl transition-all duration-500
-                        ${isExpanded ? `bg-gradient-to-br ${award.color} shadow-lg scale-110` : 'bg-white/90 backdrop-blur-sm'}
+                        ${isExpanded ? `bg-linear-to-br ${award.color} shadow-lg scale-110` : 'bg-white/90 backdrop-blur-sm'}
                       `}>
                         <AwardIcon 
                           className={`w-6 h-6 transition-colors duration-300 ${
@@ -174,7 +174,7 @@ export default function AwardsSection() {
                       <div className={`
                         absolute bottom-4 left-4 px-3 py-1 rounded-full text-xs font-bold
                         transition-all duration-300
-                        ${isExpanded ? `bg-gradient-to-r ${award.color} text-white` : 'bg-white/90 backdrop-blur-sm text-gray-700'}
+                        ${isExpanded ? `bg-linear-to-r ${award.color} text-white` : 'bg-white/90 backdrop-blur-sm text-gray-700'}
                       `}>
                         {award.achievements.length} Awards
                       </div>
@@ -184,7 +184,7 @@ export default function AwardsSection() {
                     <div className="p-6">
                       {/* Gradient overlay on content */}
                       <div className={`
-                        absolute inset-0 bg-gradient-to-br ${award.color} opacity-0 transition-opacity duration-500
+                        absolute inset-0 bg-linear-to-br ${award.color} opacity-0 transition-opacity duration-500
                         ${isExpanded ? 'opacity-5' : ''}
                       `} />
 
@@ -193,7 +193,7 @@ export default function AwardsSection() {
                         absolute top-48 right-0 w-20 h-20 transition-all duration-500
                         ${isHovered || isExpanded ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}
                       `}>
-                        <div className={`absolute top-0 right-0 w-full h-full bg-gradient-to-br ${award.color} opacity-10 rounded-bl-full`} />
+                        <div className={`absolute top-0 right-0 w-full h-full bg-linear-to-br ${award.color} opacity-10 rounded-bl-full`} />
                       </div>
 
                       {/* Year with icon */}
@@ -206,7 +206,7 @@ export default function AwardsSection() {
                       <h3 className={`
                         text-xl md:text-2xl font-bold mb-4 leading-tight relative z-10
                         transition-all duration-300
-                        ${isExpanded ? `bg-gradient-to-r ${award.color} bg-clip-text text-transparent` : 'text-gray-900'}
+                        ${isExpanded ? `bg-linear-to-r ${award.color} bg-clip-text text-transparent` : 'text-gray-900'}
                       `}>
                         {award.category.split('').map((char, i) => (
                           <span
@@ -236,7 +236,7 @@ export default function AwardsSection() {
                               className="flex gap-2 items-start text-sm text-gray-600 leading-relaxed"
                             >
                               <Award 
-                                className="w-4 h-4 flex-shrink-0 mt-0.5"
+                                className="w-4 h-4 shrink-0 mt-0.5"
                                 style={{ color: award.accentColor }}
                               />
                               <p>{achievement}</p>
@@ -251,7 +251,7 @@ export default function AwardsSection() {
                         ${isHovered || isExpanded ? 'opacity-100' : 'opacity-0'}
                       `}>
                         <div 
-                          className={`h-full bg-gradient-to-r ${award.color} transition-all duration-1000 ${
+                          className={`h-full bg-linear-to-r ${award.color} transition-all duration-1000 ${
                             isExpanded ? 'w-full' : isHovered ? 'w-1/2' : 'w-0'
                           }`}
                         />
@@ -262,7 +262,7 @@ export default function AwardsSection() {
                         className={`
                           inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider
                           transition-all duration-300 relative z-10
-                          ${isExpanded ? `bg-gradient-to-r ${award.color} bg-clip-text text-transparent` : 'text-gray-900'}
+                          ${isExpanded ? `bg-linear-to-r ${award.color} bg-clip-text text-transparent` : 'text-gray-900'}
                         `}
                       >
                         <span>{isExpanded ? 'COLLAPSE' : 'VIEW DETAILS'}</span>
@@ -304,7 +304,7 @@ export default function AwardsSection() {
                       <div className={`
                         absolute bottom-4 right-4 w-8 h-8 rounded-full flex items-center justify-center
                         font-bold text-xs transition-all duration-500
-                        ${isExpanded ? `bg-gradient-to-br ${award.color} text-white shadow-lg scale-110` : 'bg-gray-100 text-gray-400'}
+                        ${isExpanded ? `bg-linear-to-br ${award.color} text-white shadow-lg scale-110` : 'bg-gray-100 text-gray-400'}
                       `}>
                         {award.id}
                       </div>
@@ -313,7 +313,7 @@ export default function AwardsSection() {
 
                   {/* Glow effect on hover */}
                   <div className={`
-                    absolute -inset-1 bg-gradient-to-br ${award.color} rounded-2xl blur-xl -z-10
+                    absolute -inset-1 bg-linear-to-br ${award.color} rounded-2xl blur-xl -z-10
                     transition-opacity duration-500
                     ${isExpanded ? 'opacity-30' : 'opacity-0'}
                   `} />

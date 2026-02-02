@@ -1,4 +1,6 @@
-import { PortfolioPublic } from '@/components/Pages/Portfolio/PortfolioPublic'
+import { PortfolioPublic } from "@/components/Pages/Portfolio/PortfolioPublic";
+
+
 
 export default function Page() {
   return (

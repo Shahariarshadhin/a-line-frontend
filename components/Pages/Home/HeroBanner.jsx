@@ -73,7 +73,7 @@ export default function HeroBanner() {
           transform: `translate(${mousePosition.x}px, ${mousePosition.y}px) scale(1.1)`
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/70 via-slate-900/50 to-orange-900/30"></div>
+        <div className="absolute inset-0 bg-linear-to-b from-slate-900/70 via-slate-900/50 to-orange-900/30"></div>
       </div>
 
       {/* Animated Gradient Orbs */}
@@ -83,7 +83,7 @@ export default function HeroBanner() {
       {/* Content */}
       <div className="relative h-full flex items-center justify-start px-8 md:px-16 lg:px-24">
         <div className="max-w-2xl">
-          <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-8">
+          <h2 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-8">
             <span 
               className={`block transition-all duration-1000 ${
                 isVisible ? 'translate-x-0 opacity-100' : '-translate-x-20 opacity-0'
@@ -101,14 +101,14 @@ export default function HeroBanner() {
               A FRESH BRAND
             </span>
             <span 
-              className={`block bg-gradient-to-r from-orange-400 to-pink-500 bg-clip-text text-transparent transition-all duration-1000 ${
+              className={`block bg-linear-to-r from-orange-400 to-pink-500 bg-clip-text text-transparent transition-all duration-1000 ${
                 isVisible ? 'translate-x-0 opacity-100' : '-translate-x-20 opacity-0'
               }`}
               style={{ transitionDelay: '600ms' }}
             >
               IMAGE WITH BOLDLAB_
             </span>
-          </h1>
+          </h2>
           <button 
             className={`group relative bg-white text-black px-8 py-3 text-sm font-bold tracking-wider overflow-hidden transition-all duration-1000 ${
               isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
@@ -118,7 +118,7 @@ export default function HeroBanner() {
             <span className="relative z-10 group-hover:text-white transition-colors duration-300">
               VIEW MORE...
             </span>
-            <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-pink-500 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+            <div className="absolute inset-0 bg-linear-to-r from-orange-500 to-pink-500 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
           </button>
         </div>
       </div>

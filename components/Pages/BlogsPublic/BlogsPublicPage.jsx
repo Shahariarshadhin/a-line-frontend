@@ -93,9 +93,9 @@ const BlogApp = () => {
           />
           <div className="absolute top-0 left-0 w-full h-full z-10"></div>
           <div className="relative z-20 h-full flex items-center justify-center">
-            <h1 className="text-4xl font-bold text-black text-center px-4 max-w-4xl mx-auto transform transition-all duration-500 group-hover:scale-105">
+            <h2 className="text-4xl font-bold text-black text-center px-4 max-w-4xl mx-auto transform transition-all duration-500 group-hover:scale-105">
               {selectedBlog.title}
-            </h1>
+            </h2>
           </div>
         </div>
 
