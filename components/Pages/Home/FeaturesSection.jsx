@@ -11,35 +11,35 @@ export default function FeaturesSection() {
     {
       icon: Pencil,
       title: "DRAW",
-      description: "Quisque posuere mollis ipsum et molestie. Fusce cursus, risus vel scelerisque porttitor, leo quam vulputate mi, et mollis odio.",
+      description: "Quisque posuere mollis ipsum et molestie. Fusce cursus, risus vel scelerisque porttitor, leo quam .",
       color: "from-orange-400 to-red-500",
       bgColor: "bg-orange-50"
     },
     {
       icon: Play,
       title: "ANIMATE",
-      description: "Quisque posuere mollis ipsum et molestie. Fusce cursus, risus vel scelerisque porttitor, leo quam vulputate mi, et mollis odio.",
+      description: "Quisque posuere mollis ipsum et molestie. Fusce cursus, risus vel scelerisque porttitor, leo quam.",
       color: "from-blue-400 to-cyan-500",
       bgColor: "bg-blue-50"
     },
     {
       icon: Coffee,
       title: "REST",
-      description: "Quisque posuere mollis ipsum et molestie. Fusce cursus, risus vel scelerisque porttitor, leo quam vulputate mi, et mollis odio.",
+      description: "Quisque posuere mollis ipsum et molestie. Fusce cursus, risus vel scelerisque porttitor, leo quam.",
       color: "from-purple-400 to-pink-500",
       bgColor: "bg-purple-50"
     },
     {
       icon: Repeat,
       title: "REPEAT",
-      description: "Quisque posuere mollis ipsum et molestie. Fusce cursus, risus vel scelerisque porttitor, leo quam vulputate mi, et mollis odio.",
+      description: "Quisque posuere mollis ipsum et molestie. Fusce cursus, risus vel scelerisque porttitor, leo quam.",
       color: "from-green-400 to-emerald-500",
       bgColor: "bg-green-50"
     }
   ];
 
   return (
-    <section className="w-full bg-gray-50 py-16 md:py-20 relative overflow-hidden">
+    <section className="w-full bg-gray-50 py-10  relative overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 opacity-30">
         {features.map((_, index) => (
@@ -79,7 +79,7 @@ export default function FeaturesSection() {
               >
                 {/* Card Container */}
                 <div className={`
-                  w-full p-6 rounded-2xl transition-all duration-500
+                  w-full h-full p-6 rounded-2xl transition-all duration-500
                   ${isActive ? feature.bgColor + ' shadow-2xl -translate-y-4' : 'bg-transparent'}
                   ${isHovered && !isActive ? 'bg-white/50 shadow-lg -translate-y-2' : ''}
                 `}>
@@ -90,7 +90,7 @@ export default function FeaturesSection() {
                       absolute inset-0 rounded-full transition-all duration-700
                       ${isHovered ? 'scale-150 opacity-0' : 'scale-100 opacity-0'}
                     `}>
-                      <div className={`w-20 h-20 mx-auto rounded-full bg-linear-to-br ${feature.color} opacity-20 animate-ping`}></div>
+                      <div className={`w-20 h-full mx-auto rounded-full bg-linear-to-br ${feature.color} opacity-20 animate-ping`}></div>
                     </div>
                     
                     {/* Icon */}
@@ -156,9 +156,9 @@ export default function FeaturesSection() {
         </div>
 
         {/* Hint text */}
-        <p className="text-center mt-12 text-sm text-gray-500 animate-pulse">
+        {/* <p className="text-center mt-12 text-sm text-gray-500 animate-pulse">
           Click on any feature to explore more
-        </p>
+        </p> */}
       </div>
 
       <style jsx>{`

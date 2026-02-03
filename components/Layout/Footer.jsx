@@ -11,12 +11,12 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="bg-black py-10">
+    <footer className="bg-black py-4">
       <div className="container mx-auto px-4 md:px-6 text-center">
-        <div className="flex flex-col gap-6 justify-center items-center">
+        <div className="flex flex-col gap-4 justify-center items-center">
           {/* Company Info */}
           <div className="flex flex-col items-center">
-            <div className="w-72 h-full text-white font-bold text-3xl flex justify-center">
+            <div className="w-48 h-full text-white font-bold text-3xl flex justify-center">
               <Image
                 src="/assets/logo/footerlogo-white.PNG"
                 alt="Logo"
@@ -25,7 +25,7 @@ const Footer = () => {
                 className="w-full h-full"
               />
             </div>
-            <div className="flex space-x-4 text-xl justify-center">
+            <div className="flex space-x-4 text-xl justify-center mt-2">
               
                <a href="https://www.facebook.com/ALineLimited/"
                 target="_blank"
@@ -55,11 +55,11 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div className="flex flex-col items-center">
-            <h4 className="text-lg font-semibold mb-2 text-white">
+            {/* <h4 className="text-lg font-semibold mb-2 text-white">
               Quick Links
-            </h4>
-            <ul className="space-y-2 flex flex-col md:flex-row justify-center items-center gap-6">
-              {["Home", "About", "Services", "Portfolio", "Contact"].map(
+            </h4> */}
+            <ul className="space-y-2 flex flex-col md:flex-row justify-center gap-6">
+              {["Home", "About", "Services", "Portfolio"].map(
                 (link) => (
                   <li key={link}>
                     <Link

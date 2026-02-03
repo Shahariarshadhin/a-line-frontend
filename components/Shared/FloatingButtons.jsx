@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import ContactForm from "../Pages/ContactPublic/ContactPublicPage";
+import { FaArrowUp } from "react-icons/fa";
 
 export default function FloatingButtons({ 
   children, 
@@ -58,9 +59,9 @@ export default function FloatingButtons({
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3 }}
-            className="bg-black text-white rounded-full shadow-lg hover:bg-gray-200 w-12 h-12 text-2xl flex items-center justify-center"
+            className="bg-black text-white rounded-full shadow-lg hover:bg-gray-900 w-12 h-12 text-2xl flex items-center justify-center"
           >
-            ↑
+           <FaArrowUp />
           </motion.button>
         )}
 
