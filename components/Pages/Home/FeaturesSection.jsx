@@ -1,7 +1,9 @@
-"use client"
+"use client";
 
-import { useState } from 'react';
-import { Pencil, Play, Coffee, Repeat } from 'lucide-react';
+import { useState } from "react";
+import { AiOutlineAim, AiOutlineDeliveredProcedure } from "react-icons/ai";
+import { GiThink } from "react-icons/gi";
+import { IoCreateOutline } from "react-icons/io5";
 
 export default function FeaturesSection() {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -9,33 +11,34 @@ export default function FeaturesSection() {
 
   const features = [
     {
-      icon: Pencil,
-      title: "DRAW",
-      description: "Quisque posuere mollis ipsum et molestie. Fusce cursus, risus vel scelerisque porttitor, leo quam .",
+      icon: GiThink,
+      title: "Think",
+      description: "Understand the brand, the audience, and the opportunity.",
       color: "from-orange-400 to-red-500",
-      bgColor: "bg-orange-50"
+      bgColor: "bg-orange-50",
     },
     {
-      icon: Play,
-      title: "ANIMATE",
-      description: "Quisque posuere mollis ipsum et molestie. Fusce cursus, risus vel scelerisque porttitor, leo quam.",
+      icon: AiOutlineAim,
+      title: "Plan",
+      description: "Turn insights into a clear, actionable marketing roadmap.",
       color: "from-blue-400 to-cyan-500",
-      bgColor: "bg-blue-50"
+      bgColor: "bg-blue-50",
     },
     {
-      icon: Coffee,
-      title: "REST",
-      description: "Quisque posuere mollis ipsum et molestie. Fusce cursus, risus vel scelerisque porttitor, leo quam.",
+      icon: IoCreateOutline,
+      title: "Create",
+      description:
+        "Build ideas and content designed to cut through and convert.",
       color: "from-purple-400 to-pink-500",
-      bgColor: "bg-purple-50"
+      bgColor: "bg-purple-50",
     },
     {
-      icon: Repeat,
-      title: "REPEAT",
-      description: "Quisque posuere mollis ipsum et molestie. Fusce cursus, risus vel scelerisque porttitor, leo quam.",
+      icon: AiOutlineDeliveredProcedure,
+      title: "Deliver",
+      description: "Launch, optimize, and drive measurable results.",
       color: "from-green-400 to-emerald-500",
-      bgColor: "bg-green-50"
-    }
+      bgColor: "bg-green-50",
+    },
   ];
 
   return (
@@ -46,18 +49,23 @@ export default function FeaturesSection() {
           <div
             key={index}
             className={`absolute w-64 h-64 rounded-full blur-3xl transition-all duration-700 ${
-              hoveredIndex === index ? 'opacity-40 scale-150' : 'opacity-0 scale-100'
+              hoveredIndex === index
+                ? "opacity-40 scale-150"
+                : "opacity-0 scale-100"
             }`}
             style={{
-              left: `${(index * 25)}%`,
-              top: '50%',
-              transform: 'translate(-50%, -50%)',
+              left: `${index * 25}%`,
+              top: "50%",
+              transform: "translate(-50%, -50%)",
               background: `linear-gradient(135deg, ${
-                index === 0 ? '#fb923c, #ef4444' :
-                index === 1 ? '#60a5fa, #22d3ee' :
-                index === 2 ? '#c084fc, #ec4899' :
-                '#4ade80, #10b981'
-              })`
+                index === 0
+                  ? "#fb923c, #ef4444"
+                  : index === 1
+                  ? "#60a5fa, #22d3ee"
+                  : index === 2
+                  ? "#c084fc, #ec4899"
+                  : "#4ade80, #10b981"
+              })`,
             }}
           />
         ))}
@@ -68,70 +76,112 @@ export default function FeaturesSection() {
           {features.map((feature, index) => {
             const isActive = activeIndex === index;
             const isHovered = hoveredIndex === index;
-            
+
             return (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="flex flex-col items-center text-center group cursor-pointer"
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
                 onClick={() => setActiveIndex(isActive ? null : index)}
               >
                 {/* Card Container */}
-                <div className={`
+                <div
+                  className={`
                   w-full h-full p-6 rounded-2xl transition-all duration-500
-                  ${isActive ? feature.bgColor + ' shadow-2xl -translate-y-4' : 'bg-transparent'}
-                  ${isHovered && !isActive ? 'bg-white/50 shadow-lg -translate-y-2' : ''}
-                `}>
+                  ${
+                    isActive
+                      ? feature.bgColor + " shadow-2xl -translate-y-4"
+                      : "bg-transparent"
+                  }
+                  ${
+                    isHovered && !isActive
+                      ? "bg-white/50 shadow-lg -translate-y-2"
+                      : ""
+                  }
+                `}
+                >
                   {/* Icon Container with Ripple Effect */}
                   <div className="relative mb-6 flex justify-center">
                     {/* Ripple rings */}
-                    <div className={`
+                    <div
+                      className={`
                       absolute inset-0 rounded-full transition-all duration-700
-                      ${isHovered ? 'scale-150 opacity-0' : 'scale-100 opacity-0'}
-                    `}>
-                      <div className={`w-20 h-full mx-auto rounded-full bg-linear-to-br ${feature.color} opacity-20 animate-ping`}></div>
+                      ${
+                        isHovered
+                          ? "scale-150 opacity-0"
+                          : "scale-100 opacity-0"
+                      }
+                    `}
+                    >
+                      <div
+                        className={`w-20 h-full mx-auto rounded-full bg-linear-to-br ${feature.color} opacity-20 animate-ping`}
+                      ></div>
                     </div>
-                    
+
                     {/* Icon */}
-                    <div className={`
+                    <div
+                      className={`
                       relative p-4 rounded-full transition-all duration-500
-                      ${isActive ? `bg-linear-to-br ${feature.color}` : 'bg-gray-100'}
-                      ${isHovered ? 'scale-110 rotate-12' : 'scale-100 rotate-0'}
-                    `}>
-                      <feature.icon 
-                        size={48} 
+                      ${
+                        isActive
+                          ? `bg-linear-to-br ${feature.color}`
+                          : "bg-gray-100"
+                      }
+                      ${
+                        isHovered ? "scale-110 rotate-12" : "scale-100 rotate-0"
+                      }
+                    `}
+                    >
+                      <feature.icon
+                        size={48}
                         className={`transition-all duration-300 ${
-                          isActive ? 'text-white' : 'text-gray-800'
+                          isActive ? "text-white" : "text-gray-800"
                         }`}
                         strokeWidth={1.5}
                       />
                     </div>
                   </div>
-                  
+
                   {/* Title */}
-                  <h3 className={`
+                  <h3
+                    className={`
                     text-xl font-bold mb-4 tracking-wide transition-all duration-300
-                    ${isActive ? 'bg-linear-to-r ' + feature.color + ' bg-clip-text text-transparent scale-110' : 'text-gray-900'}
-                  `}>
+                    ${
+                      isActive
+                        ? "bg-linear-to-r " +
+                          feature.color +
+                          " bg-clip-text text-transparent scale-110"
+                        : "text-gray-900"
+                    }
+                  `}
+                  >
                     {feature.title}
                   </h3>
-                  
+
                   {/* Description with expand animation */}
-                  <div className={`
+                  <div
+                    className={`
                     overflow-hidden transition-all duration-500
-                    ${isActive ? 'max-h-40 opacity-100' : 'max-h-20 opacity-70'}
-                  `}>
+                    ${isActive ? "max-h-40 opacity-100" : "max-h-20 opacity-70"}
+                  `}
+                  >
                     <p className="text-sm text-gray-600 leading-relaxed">
                       {feature.description}
                     </p>
                   </div>
 
                   {/* Interactive indicator */}
-                  <div className={`
+                  <div
+                    className={`
                     mt-4 h-1 rounded-full transition-all duration-500
-                    ${isActive ? `bg-linear-to-r ${feature.color} w-full` : 'bg-gray-300 w-0'}
-                  `}></div>
+                    ${
+                      isActive
+                        ? `bg-linear-to-r ${feature.color} w-full`
+                        : "bg-gray-300 w-0"
+                    }
+                  `}
+                  ></div>
                 </div>
 
                 {/* Floating particles on hover */}
@@ -143,8 +193,8 @@ export default function FeaturesSection() {
                         className={`absolute w-2 h-2 rounded-full bg-linear-to-r ${feature.color} animate-float-up`}
                         style={{
                           left: `${50 + (i - 1) * 20}%`,
-                          bottom: '20%',
-                          animationDelay: `${i * 0.2}s`
+                          bottom: "20%",
+                          animationDelay: `${i * 0.2}s`,
                         }}
                       />
                     ))}

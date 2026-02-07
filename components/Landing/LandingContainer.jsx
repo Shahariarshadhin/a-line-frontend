@@ -21,12 +21,12 @@ export default function SectionCarousel() {
     },
     {
       title: "Who we are",
-      image: "/assets/Landing/Team.png",
+      image: "/assets/Landing/who we are2.png",
       link: "/about",
     },
     {
       title: "Blogs",
-      image: "/assets/Landing/askforq.png",
+      image: "/assets/Landing/blogs.png",
       link: "/blogs",
     },
   ];
