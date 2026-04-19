@@ -46,13 +46,13 @@ export default function HeroSection() {
       {/* Content with Fade In */}
       <div className="relative z-20 h-full flex items-end pb-20 px-6 md:px-12 lg:px-24">
         <div className="max-w-4xl">
-          <h1 
+          <h2 
             className={`text-white text-5xl md:text-7xl font-bold mb-6 transition-all duration-1000 delay-300 ${
               isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`}
           >
             Who We Are
-          </h1>
+          </h2>
           <div className="flex flex-col md:flex-row gap-8 items-start">
             <p 
               className={`text-white text-lg md:text-xl max-w-md transition-all duration-1000 delay-500 ${

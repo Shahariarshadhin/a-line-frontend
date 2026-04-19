@@ -83,7 +83,7 @@ export default function HeroBanner() {
       {/* Content */}
       <div className="relative h-full flex items-center justify-start px-8 md:px-16 lg:px-24">
         <div className="max-w-2xl">
-          <h2 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-8">
+          <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-8">
             <span 
               className={`block transition-all duration-1000 ${
                 isVisible ? 'translate-x-0 opacity-100' : '-translate-x-20 opacity-0'
@@ -108,7 +108,7 @@ export default function HeroBanner() {
             >
               IMAGE WITH BOLDLAB_
             </span>
-          </h2>
+          </h1>
           <button 
             className={`group relative bg-white text-black px-8 py-3 text-sm font-bold tracking-wider overflow-hidden transition-all duration-1000 ${
               isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'

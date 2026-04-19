@@ -14,9 +14,9 @@ export default function NotFound() {
       <div className="relative z-10 text-center max-w-2xl mx-auto">
         {/* 404 Number with glitch effect */}
         <div className="mb-8 relative">
-          <h1 className="text-9xl md:text-[12rem] font-bold text-transparent bg-clip-text bg-linear-to-r from-purple-400 via-pink-400 to-blue-400 animate-pulse">
+          <h2 className="text-9xl md:text-[12rem] font-bold text-transparent bg-clip-text bg-linear-to-r from-purple-400 via-pink-400 to-blue-400 animate-pulse">
             404
-          </h1>
+          </h2>
           <div className="absolute inset-0 text-9xl md:text-[12rem] font-bold text-purple-500/20 blur-sm">
             404
           </div>

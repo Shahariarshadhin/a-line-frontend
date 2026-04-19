@@ -178,7 +178,7 @@ export default function ServicePublic({ setIsModalOpen }) {
               </span>
             </motion.div> */}
 
-            <h1 className="text-4xl md:text-7xl lg:text-8xl font-bold text-black mb-6 leading-tight text-right pt-28">
+            <h2 className="text-4xl md:text-7xl lg:text-8xl font-bold text-black mb-6 leading-tight text-right pt-28">
               Our Services That
               <span className="text-white bg-black px-2 relative inline-block pl-3">
                 Speak
@@ -191,7 +191,7 @@ export default function ServicePublic({ setIsModalOpen }) {
                   style={{ originX: 0 }}
                 />
               </span>
-            </h1>
+            </h2>
 
             {/* <p className="text-gray-400 text-lg md:text-xl mb-8 max-w-xl">
               Transforming visions into exceptional digital experiences that

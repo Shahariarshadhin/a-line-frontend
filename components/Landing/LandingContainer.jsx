@@ -300,7 +300,7 @@ export default function SectionCarousel() {
                     : "opacity 0.5s ease-out, transform 0.5s ease-out",
               }}
             >
-              <h1
+              <h2
                 className={`font-black whitespace-nowrap transition-all duration-300 ${
                   isCurrent
                     ? "text-4xl md:text-5xl lg:text-8xl hover:scale-105 bg-white py-3 px-2 text-black shadow-2xl"
@@ -314,7 +314,7 @@ export default function SectionCarousel() {
                 ) : (
                   "_"
                 )}
-              </h1>
+              </h2>
             </div>
           );
         })}
